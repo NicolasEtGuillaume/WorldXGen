@@ -16,11 +16,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
     point3d.cpp \
-    seed.cpp
+    seed.cpp \
+    map.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     point3d.h \
-    seed.h
+    seed.h \
+    map.h
 
 FORMS    += mainwindow.ui
