@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     glwidget.cpp \
-    point3d.cpp
+    point3d.cpp \
+    seed.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
-    point3d.h
+    point3d.h \
+    seed.h
 
 FORMS    += mainwindow.ui
