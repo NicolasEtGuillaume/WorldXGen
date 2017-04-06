@@ -1,6 +1,9 @@
 #ifndef SEED_H
 #define SEED_H
 
+#include <string>
+
+using namespace std;
 
 class Seed
 {

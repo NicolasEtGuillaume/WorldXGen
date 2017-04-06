@@ -6,7 +6,7 @@ Map::Map(int sizeX, int sizeY)
     this->sizeY = sizeY;
 }
 
-Point3D Map::getPoint(int x, int y)
+Point3D * Map::getPoint(int x, int y)
 {
     // TODO: Return the correct point.
     return nullptr;
