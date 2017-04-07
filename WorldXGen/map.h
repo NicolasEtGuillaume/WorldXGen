@@ -1,7 +1,13 @@
+/**
+ * @file map.h
+ * @brief Map class, used to store information about the map.
+ */
+
 #ifndef MAP_H
 #define MAP_H
 
 #include <string>
+#include <vector>
 #include "point3d.h"
 
 using namespace std;
@@ -9,18 +15,44 @@ using namespace std;
 class Map
 {
 private:
-    // TODO: Add the Points3Ds' array.
+    vector<Point3D *> points;
     string name;
     int sizeX;
     int sizeY;
 
 public:
+
+    /**
+     * @brief Instantiates a Map object with its size, each point will get instantiated too.
+     * @param sizeX The map's X size.
+     * @param sizeY The map's Y size.
+     */
     Map(int sizeX, int sizeY);
 
+    /**
+     * @brief Gets the point associated with the given coordinates.
+     * @param x The point's X coordinate.
+     * @param y The point's Y coordinate.
+     * @return The asked point if found, nullptr otherwise.
+     */
     Point3D * getPoint(int x, int y);
 
+    /**
+     * @brief Gets the name string associated with the map.
+     * @return The name of the map.
+     */
     string getName();
+
+    /**
+     * @brief Gets the map's X size.
+     * @return The map's X size.
+     */
     int getSizeX();
+
+    /**
+     * @brief Gets the map's Y size.
+     * @return The map's Y size.
+     */
     int getSizeY();
 };
 
