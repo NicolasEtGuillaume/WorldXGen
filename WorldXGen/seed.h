@@ -1,6 +1,9 @@
 #ifndef SEED_H
 #define SEED_H
 
+#define DEFAULT_SEED_SIZE   16
+
+#include <random>
 #include <string>
 
 using namespace std;
@@ -8,11 +11,11 @@ using namespace std;
 class Seed
 {
 public:
-    string fixedPart;
-    string randomPart;
+    unsigned int * seedValue;
 
     Seed();
     Seed(string seed);
+    ~Seed();
 };
 
 #endif // SEED_H
