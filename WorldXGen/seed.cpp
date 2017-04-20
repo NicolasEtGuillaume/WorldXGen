@@ -18,6 +18,8 @@ Seed::Seed(string seed)
 {
     this->seedValue = (unsigned int *) malloc(sizeof(unsigned int) * DEFAULT_SEED_SIZE);
 
+    unsigned int i;
+
     // Initializes all indexes with 0.
     for (i = 0; i < DEFAULT_SEED_SIZE; ++i)
     {
@@ -25,7 +27,7 @@ Seed::Seed(string seed)
     }
 
     // Adds the values of all letters.
-    for (unsigned int i = 0; i < seed.length(); ++i)
+    for (i = 0; i < seed.length(); ++i)
     {
         unsigned char c = seed.at(i);
         this->seedValue[i % 16] += (unsigned int) c;
