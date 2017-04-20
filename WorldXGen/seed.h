@@ -13,8 +13,20 @@ class Seed
 public:
     unsigned int * seedValue;
 
+    /**
+     * @brief Instantiates a Seed object, randomly generates the seed.
+     */
     Seed();
+
+    /**
+     * @brief Instantiates a Seed object according to the given seed string.
+     * @param seed The seed string to use.
+     */
     Seed(string seed);
+
+    /**
+     * @brief Destroys the object, frees the memory used for the seed value.
+     */
     ~Seed();
 };
 
