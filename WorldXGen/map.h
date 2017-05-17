@@ -27,7 +27,7 @@ public:
      * @param sizeX The map's X size.
      * @param sizeY The map's Y size.
      */
-    Map(int sizeX, int sizeY);
+    Map(unsigned int sizeX, unsigned int sizeY);
 
     /**
      * @brief Gets the point associated with the given coordinates.

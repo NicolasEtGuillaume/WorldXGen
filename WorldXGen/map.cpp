@@ -1,6 +1,6 @@
 #include "map.h"
 
-Map::Map(int sizeX, int sizeY)
+Map::Map(unsigned int sizeX, unsigned int sizeY)
 {
     this->sizeX = sizeX;
     this->sizeY = sizeY;
@@ -10,7 +10,7 @@ Map::Map(int sizeX, int sizeY)
     {
         for (unsigned int y = 0; y < sizeY; ++y)
         {
-            this->points.push_back(new Point3D(x, y, 0.));
+            this->points.push_back(new Point3D((float) x, (float) y, 0.));
         }
     }
 }
