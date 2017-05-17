@@ -13,9 +13,10 @@ TEMPLATE = app
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+LIBS += -lopengl32 -lglu32
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main.cpp \
+    mainwindow.cpp \
     glwidget.cpp \
     point3d.cpp \
     seed.cpp \
