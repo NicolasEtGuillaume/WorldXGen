@@ -12,3 +12,21 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_actionNouveau_monde_triggered()
+{
+    NouveauMondeDialog myDialog;
+    myDialog.setModal(true);
+    myDialog.exec();
+    MapBuilder m;
+    /*if (myDialog.getValue()){
+        MapBuilder m;
+        if(!myDialog->ui->checkBox->isChecked()) myDialog.
+        {
+            m.setSeed(myDialog->ui->seed->getValue());
+        }
+        ui->widget->setMapBuilder(m);
+    }*/
+    m.setSeed(myDialog.getSeed());
+    ui->widget->setMapBuilder(m);
+}

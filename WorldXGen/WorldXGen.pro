@@ -21,13 +21,16 @@ SOURCES += main.cpp \
     point3d.cpp \
     seed.cpp \
     map.cpp \
-    mapbuilder.cpp
+    mapbuilder.cpp \
+    nouveaumondedialog.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
     point3d.h \
     seed.h \
     map.h \
-    mapbuilder.h
+    mapbuilder.h \
+    nouveaumondedialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    nouveaumondedialog.ui

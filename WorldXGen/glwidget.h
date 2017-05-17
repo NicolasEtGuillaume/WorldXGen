@@ -7,6 +7,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <gl/GLU.h>
+#include "mapbuilder.h"
 
 class GLWidget : public QOpenGLWidget
 {
@@ -23,10 +24,19 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 
+
+    MapBuilder getMapBuilder() const;
+    void setMapBuilder(const MapBuilder &value);
+
+public slots:
+    void genererMonde();
+
 private:
     void rotateBy(int x, int y, int z);
 
 private:
+
+    MapBuilder mapBuilder;
 
     // View settings
     QPoint last_pos;
