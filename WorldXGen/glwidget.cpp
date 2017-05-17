@@ -77,11 +77,6 @@ void GLWidget::wheelEvent(QWheelEvent *event)
     distance *= 1.0 + (1.0 * event->delta() / 1200.0);
 }
 
-void GLWidget::genererMonde()
-{
-
-}
-
 void GLWidget::rotateBy(int x, int y, int z)
 {
     x_rot += x;
@@ -97,4 +92,9 @@ MapBuilder GLWidget::getMapBuilder() const
 void GLWidget::setMapBuilder(const MapBuilder &value)
 {
     mapBuilder = value;
+}
+
+void GLWidget::updateMapView()
+{
+    //modification des paramètre opengl pour afficher une map
 }

@@ -28,8 +28,7 @@ public:
     MapBuilder getMapBuilder() const;
     void setMapBuilder(const MapBuilder &value);
 
-public slots:
-    void genererMonde();
+    void updateMapView();
 
 private:
     void rotateBy(int x, int y, int z);

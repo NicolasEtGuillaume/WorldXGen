@@ -15,5 +15,5 @@ NouveauMondeDialog::~NouveauMondeDialog()
 
 std::string NouveauMondeDialog::getSeed()
 {
-    return ui->seed->text();
+    return ui->seed->text().toLocal8Bit().constData();
 }

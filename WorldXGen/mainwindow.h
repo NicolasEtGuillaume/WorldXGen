@@ -19,8 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionExit_triggered();
-
     void on_actionNouveau_monde_triggered();
 
 private:
