@@ -35,7 +35,7 @@ public:
      * @param y The point's Y coordinate.
      * @return The asked point if found, nullptr otherwise.
      */
-    Point3D * getPoint(int x, int y);
+    Point3D * getPoint(unsigned int x, unsigned int y);
 
     /**
      * @brief Gets the name string associated with the map.

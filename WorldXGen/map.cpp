@@ -15,7 +15,7 @@ Map::Map(unsigned int sizeX, unsigned int sizeY)
     }
 }
 
-Point3D * Map::getPoint(int x, int y)
+Point3D * Map::getPoint(unsigned int x, unsigned int y)
 {
     Point3D * foundPoint = nullptr;
 
