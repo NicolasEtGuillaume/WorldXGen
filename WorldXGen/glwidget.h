@@ -29,8 +29,8 @@ public:
 
     void updateMapView();
 
-    Map getMap() const;
-    void setMap(const Map &value);
+    Map * getMap() const;
+    void setMap(Map * value);
 
 private:
     void rotateBy(int x, int y, int z);
@@ -40,7 +40,7 @@ private:
     QVector<QVector3D> m_vertexarray;
     QVector<QVector3D> m_vertices;
 
-    Map map;
+    Map * map;
 
     // Heightmap infos
     int vertices_by_x;
