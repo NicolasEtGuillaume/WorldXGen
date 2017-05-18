@@ -8,6 +8,7 @@
 #include <QOpenGLFunctions>
 #include <gl/GLU.h>
 #include "mapbuilder.h"
+#include "map.h"
 
 class GLWidget : public QOpenGLWidget
 {
@@ -25,17 +26,27 @@ public:
     void wheelEvent(QWheelEvent *event);
 
 
-    MapBuilder * getMapBuilder() const;
-    void setMapBuilder(MapBuilder * value);
 
     void updateMapView();
+
+    Map getMap() const;
+    void setMap(const Map &value);
 
 private:
     void rotateBy(int x, int y, int z);
 
 private:
 
-    MapBuilder * mapBuilder;
+    QVector<QVector3D> m_vertexarray;
+    QVector<QVector3D> m_vertices;
+
+    Map map;
+
+    // Heightmap infos
+    int vertices_by_x;
+    int vertices_by_z;
+    int quads_by_x;
+    int quads_by_z;
 
     // View settings
     QPoint last_pos;

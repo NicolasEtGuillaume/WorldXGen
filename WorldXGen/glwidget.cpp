@@ -1,5 +1,6 @@
 #include "glwidget.h"
 
+const float MAP_SIZE = 5.0;
 GLWidget::GLWidget(QWidget *parent) :
     QOpenGLWidget(parent)
 {
@@ -47,6 +48,17 @@ void GLWidget::paintGL()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(30.0f, 1.0*width()/height(), 0.1f, 100.0f);
+
+    // Method : Vertex Array
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glVertexPointer(3, GL_FLOAT, 0, m_vertexarray.constData());
+
+    glDrawArrays(GL_TRIANGLES, 0, m_vertexarray.size());
+
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void GLWidget::resizeGL(int width, int height)
@@ -97,4 +109,45 @@ void GLWidget::setMapBuilder(MapBuilder * value)
 void GLWidget::updateMapView()
 {
     //modification des paramètre opengl pour afficher une map
+    Map m = *mapBuilder.build();
+
+
+    vertices_by_x = m.getSizeX();
+    vertices_by_z = m.getSizeY();
+    quads_by_x = vertices_by_x - 1;
+    quads_by_z = vertices_by_z - 1;
+
+    Point3D p = Point3D(0,0,0);
+    QVector3D vertice;
+    m_vertices.reserve(vertices_by_x * vertices_by_z);
+    for(int z = 0; z < vertices_by_z; ++z)
+    {
+        for(int x = 0; x < vertices_by_x; ++x)
+        {
+                p = *m.getPoint(x,z);
+                vertice.setX((MAP_SIZE * p.getX() / vertices_by_x) - MAP_SIZE / 2);
+                vertice.setY((MAP_SIZE * p.getZ() / vertices_by_z) - MAP_SIZE / 2);
+                vertice.setZ((MAP_SIZE * p.getY() / vertices_by_z) - MAP_SIZE / 2);
+                m_vertices.push_back(vertice);
+        }
+    }
+
+
+    m_vertexarray.reserve(quads_by_x * quads_by_z * 6);
+    for (int z = 0; z < quads_by_z; ++z)
+    {
+        for (int x = 0; x < quads_by_x; ++x)
+        {
+            int i = z * vertices_by_x + x;
+
+            // VertexArray
+            m_vertexarray.push_back(m_vertices[i]);
+            m_vertexarray.push_back(m_vertices[i+vertices_by_x]);
+            m_vertexarray.push_back(m_vertices[i+1]);
+
+            m_vertexarray.push_back(m_vertices[i+1]);
+            m_vertexarray.push_back(m_vertices[i+vertices_by_x]);
+            m_vertexarray.push_back(m_vertices[i+1+vertices_by_x]);
+        }
+    }
 }
