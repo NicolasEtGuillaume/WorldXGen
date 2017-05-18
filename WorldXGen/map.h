@@ -38,6 +38,12 @@ public:
     Point3D * getPoint(unsigned int x, unsigned int y);
 
     /**
+     * @brief Gets a vector containing all points.
+     * @return All points in a dynamic vector.
+     */
+    vector<Point3D *> * getAllPoints();
+
+    /**
      * @brief Gets the name string associated with the map.
      * @return The name of the map.
      */

@@ -34,6 +34,11 @@ Point3D * Map::getPoint(unsigned int x, unsigned int y)
     return foundPoint;
 }
 
+vector<Point3D *> * Map::getAllPoints()
+{
+    return &(this->points);
+}
+
 string Map::getName()
 {
     return this->name;
