@@ -16,6 +16,7 @@ public:
     ~NouveauMondeDialog();
 
     std::string getSeed();
+    bool isRandom();
 
 private:
     Ui::NouveauMondeDialog *ui;

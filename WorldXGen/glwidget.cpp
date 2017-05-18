@@ -96,24 +96,25 @@ void GLWidget::rotateBy(int x, int y, int z)
     z_rot += z;
 }
 
-MapBuilder * GLWidget::getMapBuilder() const
+Map GLWidget::getMap() const
 {
-    return mapBuilder;
+    return map;
 }
 
-void GLWidget::setMapBuilder(MapBuilder * value)
+void GLWidget::setMap(const Map &value)
 {
-    mapBuilder = value;
+    map = value;
 }
+
 
 void GLWidget::updateMapView()
 {
     //modification des paramètre opengl pour afficher une map
-    Map m = *mapBuilder.build();
 
 
-    vertices_by_x = m.getSizeX();
-    vertices_by_z = m.getSizeY();
+
+    vertices_by_x = map.getSizeX();
+    vertices_by_z = map.getSizeY();
     quads_by_x = vertices_by_x - 1;
     quads_by_z = vertices_by_z - 1;
 
@@ -124,7 +125,7 @@ void GLWidget::updateMapView()
     {
         for(int x = 0; x < vertices_by_x; ++x)
         {
-                p = *m.getPoint(x,z);
+                p = *map.getPoint(x,z);
                 vertice.setX((MAP_SIZE * p.getX() / vertices_by_x) - MAP_SIZE / 2);
                 vertice.setY((MAP_SIZE * p.getZ() / vertices_by_z) - MAP_SIZE / 2);
                 vertice.setZ((MAP_SIZE * p.getY() / vertices_by_z) - MAP_SIZE / 2);
