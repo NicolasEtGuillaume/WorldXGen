@@ -8,7 +8,6 @@
 class FullyRandomMapBuilder : public MapBuilder
 {
 public:
-    FullyRandomMapBuilder();
     Map * build();
 };
 
