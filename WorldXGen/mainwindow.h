@@ -5,6 +5,7 @@
 #include <QDialog>
 #include "nouveaumondedialog.h"
 #include "mapbuilder.h"
+#include "fullyrandommapbuilder.h"
 
 namespace Ui {
 class MainWindow;

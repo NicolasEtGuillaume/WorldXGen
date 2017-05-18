@@ -5,6 +5,11 @@ MapBuilder::MapBuilder(unsigned int sizeX, unsigned int sizeY)
     this->setSizeX(sizeX)->setSizeY(sizeY);
 }
 
+MapBuilder::MapBuilder()
+{
+
+}
+
 MapBuilder * MapBuilder::setSizeX(unsigned int sizeX)
 {
     this->sizeX = sizeX;

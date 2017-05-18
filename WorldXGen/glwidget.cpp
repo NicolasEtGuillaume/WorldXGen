@@ -84,12 +84,12 @@ void GLWidget::rotateBy(int x, int y, int z)
     z_rot += z;
 }
 
-MapBuilder GLWidget::getMapBuilder() const
+MapBuilder * GLWidget::getMapBuilder() const
 {
     return mapBuilder;
 }
 
-void GLWidget::setMapBuilder(const MapBuilder &value)
+void GLWidget::setMapBuilder(MapBuilder * value)
 {
     mapBuilder = value;
 }

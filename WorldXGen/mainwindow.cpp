@@ -18,7 +18,7 @@ void MainWindow::on_actionNouveau_monde_triggered()
     NouveauMondeDialog myDialog;
     myDialog.setModal(true);
     myDialog.exec();
-    MapBuilder m;
+    FullyRandomMapBuilder * m = new FullyRandomMapBuilder();
     /*if (myDialog.getValue()){
         MapBuilder m;
         if(!myDialog->ui->checkBox->isChecked()) myDialog.
@@ -27,8 +27,8 @@ void MainWindow::on_actionNouveau_monde_triggered()
         }
         ui->widget->setMapBuilder(m);
     }*/
-    m.setSeed(myDialog.getSeed());
-    m.build();
+    m->setSeed(myDialog.getSeed());
+    m->build();
     ui->widget->setMapBuilder(m);
     ui->widget->updateMapView();
 }

@@ -25,8 +25,8 @@ public:
     void wheelEvent(QWheelEvent *event);
 
 
-    MapBuilder getMapBuilder() const;
-    void setMapBuilder(const MapBuilder &value);
+    MapBuilder * getMapBuilder() const;
+    void setMapBuilder(MapBuilder * value);
 
     void updateMapView();
 
@@ -35,7 +35,7 @@ private:
 
 private:
 
-    MapBuilder mapBuilder;
+    MapBuilder * mapBuilder;
 
     // View settings
     QPoint last_pos;

@@ -22,7 +22,7 @@ SOURCES += main.cpp \
     seed.cpp \
     map.cpp \
     mapbuilder.cpp \
-    nouveaumondedialog.cpp
+    nouveaumondedialog.cpp \
     random.cpp \
     fullyrandommapbuilder.cpp \
     conicmountainmapbuilder.cpp
@@ -33,7 +33,7 @@ HEADERS  += mainwindow.h \
     seed.h \
     map.h \
     mapbuilder.h \
-    nouveaumondedialog.h
+    nouveaumondedialog.h \
     random.h \
     fullyrandommapbuilder.h \
     conicmountainmapbuilder.h
