@@ -5,6 +5,7 @@
 
 #include <random>
 #include <string>
+#include <math.h>
 
 using namespace std;
 
@@ -23,6 +24,12 @@ public:
      * @param seed The seed string to use.
      */
     Seed(string seed);
+
+    /**
+     * @brief Changes the array into a normalized value for the seed.
+     * @return A normalized integer value.
+     */
+    unsigned int getValue();
 
     /**
      * @brief Destroys the object, frees the memory used for the seed value.

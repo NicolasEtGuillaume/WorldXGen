@@ -34,6 +34,25 @@ Seed::Seed(string seed)
     }
 }
 
+unsigned int Seed::getValue()
+{
+    unsigned int r = 0;
+
+    for (unsigned int i = 0; i < DEFAULT_SEED_SIZE; ++i)
+    {
+        unsigned int tempVal = this->seedValue[i];
+        unsigned int n = 0;
+        do {
+            tempVal /= 10;
+            ++n;
+        } while (tempVal > 0);
+
+        r += r * ((unsigned int) pow(10, n)) + this->seedValue[i];
+    }
+
+    return r;
+}
+
 Seed::~Seed()
 {
     free(this->seedValue);
