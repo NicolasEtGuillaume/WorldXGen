@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     mapbuilder.cpp \
     nouveaumondedialog.cpp
     random.cpp \
-    fullyrandommapbuilder.cpp
+    fullyrandommapbuilder.cpp \
+    conicmountainmapbuilder.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -34,7 +35,8 @@ HEADERS  += mainwindow.h \
     mapbuilder.h \
     nouveaumondedialog.h
     random.h \
-    fullyrandommapbuilder.h
+    fullyrandommapbuilder.h \
+    conicmountainmapbuilder.h
 
 FORMS    += mainwindow.ui \
     nouveaumondedialog.ui
