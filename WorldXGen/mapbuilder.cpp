@@ -19,7 +19,13 @@ MapBuilder * MapBuilder::setSizeY(unsigned int sizeY)
 
 MapBuilder * MapBuilder::setSeed(string seed)
 {
-    // TODO
+    this->seed = new Seed(seed);
+    return this;
+}
+
+MapBuilder * MapBuilder::setSeed(Seed * seed)
+{
+    this->seed = seed;
     return this;
 }
 

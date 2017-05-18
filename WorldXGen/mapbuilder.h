@@ -2,10 +2,12 @@
 #define MAPBUILDER_H
 
 #include "map.h"
+#include "seed.h"
 
 class MapBuilder
 {
 protected:
+    Seed * seed;
     unsigned int sizeX;
     unsigned int sizeY;
 public:
@@ -41,6 +43,13 @@ public:
      * @return Itself, the same MapBuilder instance (Factory pattern).
      */
     MapBuilder * setSeed(string seed);
+
+    /**
+     * @brief Sets the seed of a map.
+     * @param seed The seed to use.
+     * @return Itself, the same MapBuilder instance (Factory pattern).
+     */
+    MapBuilder * setSeed(Seed * seed);
 
     /**
      * @brief Applies erosion on the map.
