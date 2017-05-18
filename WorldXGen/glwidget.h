@@ -9,7 +9,7 @@
 #include <gl/GLU.h>
 #include "mapbuilder.h"
 #include "map.h"
-
+#include <iostream>
 class GLWidget : public QOpenGLWidget
 {
     Q_OBJECT

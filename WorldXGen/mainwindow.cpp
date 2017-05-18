@@ -15,6 +15,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_monde_triggered()
 {
+
     NouveauMondeDialog myDialog;
     myDialog.setModal(true);
     myDialog.exec();
@@ -28,8 +29,8 @@ void MainWindow::on_actionNouveau_monde_triggered()
         ui->widget->setMapBuilder(m);
     }*/
     m->setSeed(myDialog.getSeed());
-    m->setSizeX(100);
-    m->setSizeY(100);
+    m->setSizeX(2);
+    m->setSizeY(2);
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();
 }

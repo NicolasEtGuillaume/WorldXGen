@@ -3,7 +3,7 @@
 
 #include "map.h"
 #include "seed.h"
-
+#include <iostream>
 class MapBuilder
 {
 protected:

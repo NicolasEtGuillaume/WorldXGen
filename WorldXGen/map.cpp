@@ -4,13 +4,13 @@ Map::Map(unsigned int sizeX, unsigned int sizeY)
 {
     this->sizeX = sizeX;
     this->sizeY = sizeY;
-    this->points = vector<Point3D *>(sizeX * sizeY);
-
+    Point3D * pompote;
     for (unsigned int x = 0; x < sizeX; ++x)
     {
         for (unsigned int y = 0; y < sizeY; ++y)
         {
-            this->points.push_back(new Point3D((float) x, (float) y, 0.));
+            pompote = new Point3D((float) x, (float) y, (float) 0);
+            this->points.push_back(pompote);
         }
     }
 }

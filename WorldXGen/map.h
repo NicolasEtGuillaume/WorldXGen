@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include "point3d.h"
+#include <iostream>
 
 using namespace std;
 

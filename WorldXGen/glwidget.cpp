@@ -17,7 +17,7 @@ GLWidget::~GLWidget()
 void GLWidget::initializeGL()
 {
     // View settings
-    distance = -10.0;
+    distance = -5.0;
     x_rot = 0;
     y_rot = 0;
     z_rot = 0;
@@ -126,13 +126,14 @@ void GLWidget::updateMapView()
         for(int x = 0; x < vertices_by_x; ++x)
         {
                 p = *map->getPoint(x,z);
-                vertice.setX((MAP_SIZE * p.getX() / vertices_by_x) - MAP_SIZE / 2);
-                vertice.setY((MAP_SIZE * p.getZ() / vertices_by_z) - MAP_SIZE / 2);
-                vertice.setZ((MAP_SIZE * p.getY() / vertices_by_z) - MAP_SIZE / 2);
+                float norm = p.getX()*p.getX() + p.getY()*p.getY() +p.getZ()*p.getZ();
+                norm = sqrt(norm);
+                vertice.setX(MAP_SIZE * p.getX() / norm);
+                vertice.setY(MAP_SIZE * p.getY() / norm);
+                vertice.setZ(MAP_SIZE * p.getZ() / norm);
                 m_vertices.push_back(vertice);
         }
     }
-
 
     m_vertexarray.reserve(quads_by_x * quads_by_z * 6);
     for (int z = 0; z < quads_by_z; ++z)
