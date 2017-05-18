@@ -151,4 +151,6 @@ void GLWidget::updateMapView()
             m_vertexarray.push_back(m_vertices[i+1+vertices_by_x]);
         }
     }
+
+    this->paintGL();
 }
