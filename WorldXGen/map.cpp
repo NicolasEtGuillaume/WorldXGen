@@ -39,12 +39,12 @@ string Map::getName()
     return this->name;
 }
 
-int Map::getSizeX()
+unsigned int Map::getSizeX()
 {
     return this->sizeX;
 }
 
-int Map::getSizeY()
+unsigned int Map::getSizeY()
 {
     return this->sizeY;
 }

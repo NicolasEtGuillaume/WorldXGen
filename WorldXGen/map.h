@@ -17,8 +17,8 @@ class Map
 private:
     vector<Point3D *> points;
     string name;
-    int sizeX;
-    int sizeY;
+    unsigned int sizeX;
+    unsigned int sizeY;
 
 public:
 
@@ -47,13 +47,13 @@ public:
      * @brief Gets the map's X size.
      * @return The map's X size.
      */
-    int getSizeX();
+    unsigned int getSizeX();
 
     /**
      * @brief Gets the map's Y size.
      * @return The map's Y size.
      */
-    int getSizeY();
+    unsigned int getSizeY();
 };
 
 #endif // MAP_H
