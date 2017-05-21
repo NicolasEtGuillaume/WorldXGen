@@ -6,7 +6,7 @@
 #include "mapbuilder.h"
 #include "map.h"
 
-class ConicMountainmapBuilder : public MapBuilder
+class SimplePeaksMoutainMapBuilder : public MapBuilder
 {
 public:
     Map * build();
