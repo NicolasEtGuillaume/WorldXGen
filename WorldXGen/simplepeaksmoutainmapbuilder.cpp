@@ -35,3 +35,50 @@ Map * SimplePeaksMoutainMapBuilder::build()
 
     return generatedMap;
 }
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionParams(float gShiftX, float gShiftY, float gSizeX, float gSizeY)
+{
+    this->gaussianShiftX    = gShiftX;
+    this->gaussianShiftY    = gShiftY;
+    this->gaussianSizeX     = gSizeX;
+    this->gaussianSizeY     = gSizeY;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionShift(float gShiftX, float gShiftY)
+{
+    this->gaussianShiftX = gShiftX;
+    this->gaussianShiftY = gShiftY;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionShiftX(float gShiftX)
+{
+    this->gaussianShiftX = gShiftX;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionShiftY(float gShiftY)
+{
+    this->gaussianShiftY = gShiftY;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionSize(float gSizeX, float gSizeY)
+{
+    this->gaussianSizeX = gSizeX;
+    this->gaussianSizeY = gSizeY;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionSizeX(float gSizeX)
+{
+    this->gaussianSizeX = gSizeX;
+}
+
+void SimplePeaksMoutainMapBuilder::setGaussianFunctionSizeY(float gSizeY)
+{
+    this->gaussianSizeY = gSizeY;
+}
+
+float SimplePeaksMoutainMapBuilder::getGaussianValue(float x, float y)
+{
+    return exp(
+        -(pow(x - gaussianShiftX, 2) / pow(2 * gaussianSizeX, 2)) - pow(y - gaussianShiftY, 2) / pow(2 * gaussianSizeY, 2)
+    );
+}
