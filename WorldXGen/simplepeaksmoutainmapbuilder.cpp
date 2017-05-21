@@ -1,6 +1,6 @@
-#include "conicmountainmapbuilder.h"
+#include "simplepeaksmoutainmapbuilder.h"
 
-Map * ConicMountainmapBuilder::build()
+Map * SimplePeaksMoutainMapBuilder::build()
 {
     Map * generatedMap = new Map(this->sizeX, this->sizeY);
 
