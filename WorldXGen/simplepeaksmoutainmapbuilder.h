@@ -17,13 +17,13 @@ private:
     float getGaussianValue(float x, float y);
 
 public:
-    void setGaussianFunctionParams(float gShiftX, float gShiftY, float gSizeX, float gSizeY);
-    void setGaussianFunctionShift(float gShiftX, float gShiftY);
-    void setGaussianFunctionShiftX(float gShiftX);
-    void setGaussianFunctionShiftY(float gShiftY);
-    void setGaussianFunctionSize(float gSizeX, float gSizeY);
-    void setGaussianFunctionSizeX(float gSizeX);
-    void setGaussianFunctionSizeY(float gSizeY);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionParams(float gShiftX, float gShiftY, float gSizeX, float gSizeY);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionShift(float gShiftX, float gShiftY);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionShiftX(float gShiftX);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionShiftY(float gShiftY);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionSize(float gSizeX, float gSizeY);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionSizeX(float gSizeX);
+    SimplePeaksMoutainMapBuilder * setGaussianFunctionSizeY(float gSizeY);
 
     Map * build();
 };
