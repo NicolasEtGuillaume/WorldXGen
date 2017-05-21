@@ -8,24 +8,56 @@
 
 class SimplePeaksMoutainMapBuilder : public MapBuilder
 {
-private:
-    float gaussianShiftX;
-    float gaussianShiftY;
-    float gaussianSizeX;
-    float gaussianSizeY;
-
-    float getGaussianValue(float x, float y);
-
 public:
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionParams(float gShiftX, float gShiftY, float gSizeX, float gSizeY);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionShift(float gShiftX, float gShiftY);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionShiftX(float gShiftX);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionShiftY(float gShiftY);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionSize(float gSizeX, float gSizeY);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionSizeX(float gSizeX);
-    SimplePeaksMoutainMapBuilder * setGaussianFunctionSizeY(float gSizeY);
 
-    Map * build();
+    /**
+     * @brief The Gaussian3DCurve class is used to represent a gaussian curve in a 3D space.
+     */
+    class Gaussian3DCurve
+    {
+    public:
+        float gaussianShiftX;
+        float gaussianShiftY;
+        float gaussianSizeX;
+        float gaussianSizeY;
+        float gaussianSizeZ;
+
+        Gaussian3DCurve(float gShiftX, float gShiftY, float gSizeX, float gSizeY, float gSizeZ);
+
+        float getValue(float x, float y);
+    };
+
+    /**
+     * @brief The Gaussian3DCurveBuilder class is used to create a Gaussian3DCurve object using a Factory Pattern.
+     */
+    class Gaussian3DCurveBuilder
+    {
+    private:
+        float gaussianShiftX;
+        float gaussianShiftY;
+        float gaussianSizeX;
+        float gaussianSizeY;
+        float gaussianSizeZ;
+
+    public:
+
+        Gaussian3DCurveBuilder();
+
+        Gaussian3DCurveBuilder * setGaussianShiftX(float gShiftX);
+        Gaussian3DCurveBuilder * setGaussianShiftY(float gShiftY);
+        Gaussian3DCurveBuilder * setGaussianSizeX(float gSizeX);
+        Gaussian3DCurveBuilder * setGaussianSizeY(float gSizeY);
+        Gaussian3DCurveBuilder * setGaussianSizeZ(float gSizeZ);
+
+        Gaussian3DCurve * make();
+    };
+
+    SimplePeaksMoutainMapBuilder();
+    SimplePeaksMoutainMapBuilder * addGaussianCurve(SimplePeaksMoutainMapBuilder::Gaussian3DCurve * curve);
+    Map * make();
+
+private:
+    vector<Gaussian3DCurve *> curves;
 };
 
 #endif // CONICMOUNTAINMAPBUILDER_H
