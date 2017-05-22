@@ -148,7 +148,7 @@ void GLWidget::updateMapView()
     vertices_by_z = map->getSizeY();
     quads_by_x = vertices_by_x - 1;
     quads_by_z = vertices_by_z - 1;
-
+    cout << "map " << this->map->getPoint(0,0)->getZ() << endl;
     Point3D p = Point3D(0,0,0);
     QVector3D vertice;
     m_vertices.reserve(vertices_by_x * vertices_by_z);
@@ -157,14 +157,23 @@ void GLWidget::updateMapView()
         for(int x = 0; x < vertices_by_x; ++x)
         {
                 p = *map->getPoint(x,z);
-                float norm = p.getX()*p.getX() + p.getY()*p.getY() +p.getZ()*p.getZ();
-                norm = sqrt(norm);
-                vertice.setX(MAP_SIZE * p.getX() / norm);
-                vertice.setY(MAP_SIZE * p.getY() / norm);
-                vertice.setZ(MAP_SIZE * p.getZ() / norm);
+//                float norm = p.getX()*p.getX() + p.getY()*p.getY() +p.getZ()*p.getZ();
+//                norm = sqrt(norm);
+//                vertice.setX(MAP_SIZE * p.getX() / norm);
+//                vertice.setY(MAP_SIZE * p.getZ() / norm);
+//                vertice.setZ(MAP_SIZE * p.getY() / norm);
+//                vertice.setX(x);
+//                vertice.setY(p.getZ());
+//                vertice.setZ(z);
+//                vertice.normalize();
+                cout << "map " << p.getZ() << endl;
+                vertice.setX((MAP_SIZE * x / vertices_by_x) - MAP_SIZE / 2);
+                vertice.setY(p.getZ());
+                vertice.setZ((MAP_SIZE * z / vertices_by_z) - MAP_SIZE / 2);
                 m_vertices.push_back(vertice);
         }
     }
+
 
     m_vertexarray.reserve(quads_by_x * quads_by_z * 6);
     for (int z = 0; z < quads_by_z; ++z)

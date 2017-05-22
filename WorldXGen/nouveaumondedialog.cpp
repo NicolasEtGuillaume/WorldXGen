@@ -17,3 +17,8 @@ std::string NouveauMondeDialog::getSeed()
 {
     return ui->seed->text().toLocal8Bit().constData();
 }
+
+bool NouveauMondeDialog::isRandom()
+{
+    return ui->checkBox->isChecked();
+}
