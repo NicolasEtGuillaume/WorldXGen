@@ -15,7 +15,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNouveau_monde_triggered()
 {
-
     NouveauMondeDialog myDialog;
     myDialog.setModal(true);
     myDialog.exec();

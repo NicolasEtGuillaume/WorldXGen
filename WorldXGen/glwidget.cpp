@@ -143,7 +143,8 @@ void GLWidget::updateMapView()
     //modification des paramètre opengl pour afficher une map
 
 
-
+    m_vertices.clear();
+    m_vertexarray.clear();
     vertices_by_x = map->getSizeX();
     vertices_by_z = map->getSizeY();
     quads_by_x = vertices_by_x - 1;
