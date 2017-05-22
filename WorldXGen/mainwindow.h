@@ -6,7 +6,6 @@
 #include "nouveaumondedialog.h"
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
-#include "conicmountainmapbuilder.h"
 
 namespace Ui {
 class MainWindow;
