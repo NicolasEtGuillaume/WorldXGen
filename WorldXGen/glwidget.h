@@ -6,16 +6,21 @@
 #include <QtGui>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
+#include <QtOpenGL/QGLWidget>
+#include <QtOpenGL/QGLBuffer>
 #include <gl/GLU.h>
 #include "mapbuilder.h"
 #include "map.h"
 #include <iostream>
-class GLWidget : public QOpenGLWidget
+class GLWidget : public QGLWidget
 {
     Q_OBJECT
 public:
     explicit GLWidget(QWidget *parent = 0);
     ~GLWidget();
+
+    QSize minimumSizeHint() const;
+    QSize sizeHint() const;
 
     void initializeGL();
     void paintGL();
@@ -41,6 +46,9 @@ private:
     QVector<QVector3D> m_vertices;
 
     Map * map;
+
+    // GPU Buffer
+    QGLBuffer m_vertexbuffer;
 
     // Heightmap infos
     int vertices_by_x;

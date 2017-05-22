@@ -2,7 +2,8 @@
 
 const float MAP_SIZE = 5.0;
 GLWidget::GLWidget(QWidget *parent) :
-    QOpenGLWidget(parent)
+    QGLWidget(parent),
+    m_vertexbuffer(QGLBuffer::VertexBuffer)
 {
 
 }
@@ -12,19 +13,28 @@ GLWidget::~GLWidget()
 
 }
 
+QSize GLWidget::minimumSizeHint() const
+{
+    return QSize(200,200);
+}
+
+QSize GLWidget::sizeHint() const
+{
+    return QSize(800,600);
+}
 
 
 void GLWidget::initializeGL()
 {
     // View settings
-    distance = -5.0;
+    distance = -10.0;
     x_rot = 0;
     y_rot = 0;
     z_rot = 0;
 
     // GL options
 
-    glClearColor(0.2f,0.2f,0.2f,0.0f);
+    qglClearColor(Qt::darkGray);
     glEnable(GL_DEPTH_TEST);
 }
 
@@ -49,6 +59,7 @@ void GLWidget::paintGL()
     glLoadIdentity();
     gluPerspective(30.0f, 1.0*width()/height(), 0.1f, 100.0f);
 
+    qglColor(Qt::white);
     // Method : Vertex Array
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -59,6 +70,26 @@ void GLWidget::paintGL()
 
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    //Affiche un repere
+    glBegin(GL_LINES);
+        qglColor(Qt::white);
+        glVertex3f(0.0f, 0.0f, 0.0f);
+        qglColor(Qt::red);
+        glVertex3f(1.0f, 0.0f, 0.0f);
+    glEnd();
+    glBegin(GL_LINES);
+        qglColor(Qt::white);
+        glVertex3f(0.0f, 0.0f, 0.0f);
+        qglColor(Qt::blue);
+        glVertex3f(0.0f, 1.0f, 0.0f);
+    glEnd();
+    glBegin(GL_LINES);
+        qglColor(Qt::white);
+        glVertex3f(0.0f, 0.0f, 0.0f);
+        qglColor(Qt::green);
+        glVertex3f(0.0f, 0.0f, 1.0f);
+    glEnd();
 }
 
 void GLWidget::resizeGL(int width, int height)
@@ -152,6 +183,12 @@ void GLWidget::updateMapView()
             m_vertexarray.push_back(m_vertices[i+1+vertices_by_x]);
         }
     }
+
+    // Vertex buffer init
+    m_vertexbuffer.create();
+    m_vertexbuffer.bind();
+    m_vertexbuffer.allocate(m_vertices.constData(), m_vertices.size() * sizeof(QVector3D));
+    m_vertexbuffer.release();
 
     this->paintGL();
 }

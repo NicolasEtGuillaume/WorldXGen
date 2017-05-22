@@ -29,8 +29,8 @@ void MainWindow::on_actionNouveau_monde_triggered()
         ui->widget->setMapBuilder(m);
     }*/
     m->setSeed(myDialog.getSeed());
-    m->setSizeX(2);
-    m->setSizeY(2);
+    m->setSizeX(10);
+    m->setSizeY(10);
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();
 }
