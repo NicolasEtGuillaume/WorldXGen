@@ -17,6 +17,9 @@ public:
 
     std::string getSeed();
     bool isRandom();
+    int getComboIndex();
+    int getSizeX();
+    int getSizeY();
 
 private:
     Ui::NouveauMondeDialog *ui;

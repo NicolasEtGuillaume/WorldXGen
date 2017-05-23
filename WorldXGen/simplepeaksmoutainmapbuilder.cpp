@@ -1,5 +1,10 @@
 #include "simplepeaksmoutainmapbuilder.h"
 
+SimplePeaksMoutainMapBuilder::SimplePeaksMoutainMapBuilder()
+{
+
+}
+
 SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(SimplePeaksMoutainMapBuilder::Gaussian3DCurve * curve)
 {
     this->curves.push_back(curve);
@@ -7,7 +12,7 @@ SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(Si
     return this;
 }
 
-Map * SimplePeaksMoutainMapBuilder::make()
+Map * SimplePeaksMoutainMapBuilder::build()
 {
     Map * generatedMap = new Map(this->sizeX, this->sizeY);
 
@@ -29,6 +34,7 @@ Map * SimplePeaksMoutainMapBuilder::make()
                 finalZValue = max(finalZValue, curveValue);
             }
         }
+        point->setZ(finalZValue);
     }
 
     return generatedMap;

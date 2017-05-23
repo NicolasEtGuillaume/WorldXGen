@@ -62,7 +62,7 @@ public:
      * @brief Generates the map according to the given parameters.
      * @return The generated Map instance.
      */
-    Map * build();
+    virtual Map * build(){return nullptr;}
 };
 
 #endif // MAPBUILDER_H

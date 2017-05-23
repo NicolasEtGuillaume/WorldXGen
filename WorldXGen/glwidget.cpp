@@ -100,6 +100,7 @@ void GLWidget::resizeGL(int width, int height)
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
     last_pos = event->pos();
+    updateGL();
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
@@ -113,11 +114,13 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
         rotateBy(0, dx*8, 0);
     }
     last_pos = event->pos();
+    updateGL();
 }
 
 void GLWidget::wheelEvent(QWheelEvent *event)
 {
     distance *= 1.0 + (1.0 * event->delta() / 1200.0);
+    updateGL();
 }
 
 void GLWidget::rotateBy(int x, int y, int z)
@@ -149,7 +152,6 @@ void GLWidget::updateMapView()
     vertices_by_z = map->getSizeY();
     quads_by_x = vertices_by_x - 1;
     quads_by_z = vertices_by_z - 1;
-    cout << "map " << this->map->getPoint(0,0)->getZ() << endl;
     Point3D p = Point3D(0,0,0);
     QVector3D vertice;
     m_vertices.reserve(vertices_by_x * vertices_by_z);
@@ -167,7 +169,6 @@ void GLWidget::updateMapView()
 //                vertice.setY(p.getZ());
 //                vertice.setZ(z);
 //                vertice.normalize();
-                cout << "map " << p.getZ() << endl;
                 vertice.setX((MAP_SIZE * x / vertices_by_x) - MAP_SIZE / 2);
                 vertice.setY(p.getZ());
                 vertice.setZ((MAP_SIZE * z / vertices_by_z) - MAP_SIZE / 2);

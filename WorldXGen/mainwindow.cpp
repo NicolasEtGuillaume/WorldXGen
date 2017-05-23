@@ -18,12 +18,28 @@ void MainWindow::on_actionNouveau_monde_triggered()
     NouveauMondeDialog myDialog;
     myDialog.setModal(true);
     myDialog.exec();
-    FullyRandomMapBuilder * m = new FullyRandomMapBuilder();
+    MapBuilder * m;
+    cout << myDialog.getComboIndex() << endl;
+    switch (myDialog.getComboIndex())
+    {
+        case 0 :
+            m = new FullyRandomMapBuilder();
+            break;
+        case 1 :
+            m = new SimplePeaksMoutainMapBuilder();
+            break;
+        default :
+            m = new SimplePeaksMoutainMapBuilder();
+    }
+
+
+
     if(!myDialog.isRandom()){
         m->setSeed(myDialog.getSeed());
     }
-    m->setSizeX(6);
-    m->setSizeY(7);
+    m->setSizeX(myDialog.getSizeX());
+    m->setSizeY(myDialog.getSizeY());
+    //((SimplePeaksMoutainMapBuilder *) m)->addGaussianCurve(new SimplePeaksMoutainMapBuilder::Gaussian3DCurve(myDialog.getSizeX()/2, myDialog.getSizeY()/2, 1., 1., 1.));
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();
 }

@@ -22,3 +22,18 @@ bool NouveauMondeDialog::isRandom()
 {
     return ui->checkBox->isChecked();
 }
+
+int NouveauMondeDialog::getComboIndex()
+{
+    return ui->comboBox->currentIndex();
+}
+
+int NouveauMondeDialog::getSizeX()
+{
+    return ui->sizeX->value();
+}
+
+int NouveauMondeDialog::getSizeY()
+{
+    return ui->sizeY->value();
+}

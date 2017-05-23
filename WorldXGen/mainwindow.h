@@ -6,6 +6,7 @@
 #include "nouveaumondedialog.h"
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
+#include "simplepeaksmoutainmapbuilder.h"
 
 namespace Ui {
 class MainWindow;

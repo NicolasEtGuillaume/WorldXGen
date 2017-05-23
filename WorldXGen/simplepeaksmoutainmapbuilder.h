@@ -4,6 +4,7 @@
 #include <algorithm>
 #include "random.h"
 #include "mapbuilder.h"
+#include "simplepeaksmoutainmapbuilder.h"
 #include "map.h"
 
 class SimplePeaksMoutainMapBuilder : public MapBuilder
@@ -54,7 +55,7 @@ public:
 
     SimplePeaksMoutainMapBuilder();
     SimplePeaksMoutainMapBuilder * addGaussianCurve(SimplePeaksMoutainMapBuilder::Gaussian3DCurve * curve);
-    Map * make();
+    Map * build();
 
 private:
     vector<Gaussian3DCurve *> curves;
