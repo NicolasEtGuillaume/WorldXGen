@@ -1,6 +1,6 @@
 #include "glwidget.h"
 
-const float MAP_SIZE = 5.0;
+const float MAP_SIZE_LIMITER = 5.0;//Evite les problèmes d'affichages de trop grande map
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent),
     m_vertexbuffer(QGLBuffer::VertexBuffer)
@@ -169,9 +169,10 @@ void GLWidget::updateMapView()
 //                vertice.setY(p.getZ());
 //                vertice.setZ(z);
 //                vertice.normalize();
-                vertice.setX((MAP_SIZE * x / vertices_by_x) - MAP_SIZE / 2);
-                vertice.setY(p.getZ());
-                vertice.setZ((MAP_SIZE * z / vertices_by_z) - MAP_SIZE / 2);
+                vertice.setX((x/MAP_SIZE_LIMITER) - (vertices_by_x/MAP_SIZE_LIMITER/2));
+                vertice.setY(p.getZ()/MAP_SIZE_LIMITER);
+                vertice.setZ((z/MAP_SIZE_LIMITER) - (vertices_by_z/MAP_SIZE_LIMITER/2));
+
                 m_vertices.push_back(vertice);
         }
     }
