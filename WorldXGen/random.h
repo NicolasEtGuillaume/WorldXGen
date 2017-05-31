@@ -36,14 +36,6 @@ public:
 
     /**
      * @brief Generates a floating point number, following a normal distribution.
-     * @param mu The mu parameter.
-     * @param sigma The sigma parameter.
-     * @return The randomly generated number.
-     */
-    static float Random::normalDistribution(float mu, float sigma);
-
-    /**
-     * @brief Generates a floating point number, following a normal distribution.
      * @param seed The seed to use for the generation.
      * @param mu The mu parameter.
      * @param sigma The sigma parameter.
