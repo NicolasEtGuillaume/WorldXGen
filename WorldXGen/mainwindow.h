@@ -23,6 +23,8 @@ public:
 private slots:
     void on_actionNouveau_monde_triggered();
 
+    void on_pushButtonGoutteLancer_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
