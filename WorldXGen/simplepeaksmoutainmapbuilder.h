@@ -2,6 +2,7 @@
 #define CONICMOUNTAINMAPBUILDER_H
 
 #include <algorithm>
+#include <random>
 #include "random.h"
 #include "mapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
