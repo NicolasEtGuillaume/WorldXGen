@@ -26,7 +26,9 @@ SOURCES += main.cpp \
     random.cpp \
     fullyrandommapbuilder.cpp \
     simplepeaksmoutainmapbuilder.cpp \
-    goutte.cpp
+    goutte.cpp \
+    filter.cpp \
+    filteraveraging.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -38,7 +40,9 @@ HEADERS  += mainwindow.h \
     random.h \
     fullyrandommapbuilder.h \
     simplepeaksmoutainmapbuilder.h \
-    goutte.h
+    goutte.h \
+    filter.h \
+    filteraveraging.h
 
 FORMS    += mainwindow.ui \
     nouveaumondedialog.ui

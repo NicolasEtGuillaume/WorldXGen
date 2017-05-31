@@ -39,8 +39,10 @@ void MainWindow::on_actionNouveau_monde_triggered()
     }
     m->setSizeX(myDialog.getSizeX())
         ->setSizeY(myDialog.getSizeY());
-    //((SimplePeaksMoutainMapBuilder *) m)->addGaussianCurve(new SimplePeaksMoutainMapBuilder::Gaussian3DCurve(myDialog.getSizeX()/2, myDialog.getSizeY()/2, 1., 1., 1.));
-    ui->widget->setMap(m->build());
+
+    Filter * filter = new FilterAveraging();
+
+    ui->widget->setMap(filter->apply(m->build()));
     ui->widget->updateMapView();
 }
 
