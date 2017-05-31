@@ -21,12 +21,22 @@ float Random::uniformDistribution(unsigned int seed, int lowerBound, int upperBo
     return Random::uniformDistribution(seed) * (upperBound - lowerBound) + lowerBound;
 }
 
-float Random::normalDistribution(unsigned int seed)
+float Random::normalDistribution(float mu, float sigma)
 {
-    float u1, u2;
-    srand(seed);
-    u1 = Random::uniformDistribution();
-    u2 = Random::uniformDistribution();
-    return (float) (sqrt(-2 * log(u1)) * cos(2 * M_PIl * u2));
+    // Boc-Muller's method. Inspired by FunK92's code (https://openclassrooms.com/forum/sujet/random-gaussien-54777).
+    float u1 = Random::uniformDistribution(-1, 1),
+        u2 = Random::uniformDistribution(-1, 1),
+        y;
 
+    y = powf(-2.f * logf(u1), 0.5f) * cosf(6.f * u2);
+
+    return mu + sigma * y;
+
+}
+
+
+float Random::normalDistribution(unsigned int seed, float mu, float sigma)
+{
+    srand(seed);
+    return Random::normalDistribution(mu, sigma);
 }

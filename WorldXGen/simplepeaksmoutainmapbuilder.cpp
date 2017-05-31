@@ -14,20 +14,38 @@ SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(Si
 
 Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
 {
-    srand(this->seed->getValue());
+    unsigned int seedValue = this->seed->getValue();
+    srand(seedValue);
+
+    std::mt19937 gen(seedValue);
 
     if (randomCurves)
     {
 
         float gaussianCurvesCount = Random::uniformDistribution(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);;
 
+
+
         for (unsigned int i = 0; i < gaussianCurvesCount; ++i)
         {
-            float   gShiftX = Random::uniformDistribution(0, (int) this->sizeX),
-                    gShiftY = Random::uniformDistribution(0, (int) this->sizeY),
-                    gSizeX = Random::uniformDistribution(0, (int) (this->sizeX - gShiftX)),
-                    gSizeY = Random::uniformDistribution(0, (int) (this->sizeY - gShiftY)),
-                    gSizeZ = Random::uniformDistribution(0, CURVE_HEIGHT_MAX);
+            float gShiftX, gShiftY, gSizeX, gSizeY, gSizeZ;
+
+            std::normal_distribution<float> d1(this->sizeX / 2.f, 4.f);
+            gShiftX = d1(gen);
+
+            std::normal_distribution<float> d2(this->sizeY / 2.f, 4.f);
+            gShiftY = d2(gen);
+
+            std::normal_distribution<float> d3(this->sizeX / 8.f, 4.f);
+            gSizeX = d3(gen);
+
+            std::normal_distribution<float> d4(this->sizeY / 8.f, 4.f);
+            gSizeY = d4(gen);
+
+            std::normal_distribution<float> d5(this->sizeX * this->sizeY / 200.f, this->sizeX * this->sizeY / 400.f);
+            gSizeZ = d5(gen);
+
+            cout << gShiftX << " ; " << gShiftY << " ; " << gSizeX << " ; " << gSizeY << " ; " << gSizeZ << endl;
 
             addGaussianCurve(new Gaussian3DCurve(gShiftX, gShiftY, gSizeX, gSizeY, gSizeZ));
         }
