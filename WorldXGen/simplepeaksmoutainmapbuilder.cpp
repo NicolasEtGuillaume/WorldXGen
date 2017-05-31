@@ -45,8 +45,6 @@ Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
             std::normal_distribution<float> d5(this->sizeX * this->sizeY / 200.f, this->sizeX * this->sizeY / 400.f);
             gSizeZ = d5(gen);
 
-            cout << gShiftX << " ; " << gShiftY << " ; " << gSizeX << " ; " << gSizeY << " ; " << gSizeZ << endl;
-
             addGaussianCurve(new Gaussian3DCurve(gShiftX, gShiftY, gSizeX, gSizeY, gSizeZ));
         }
     }

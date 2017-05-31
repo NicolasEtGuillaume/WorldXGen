@@ -7,6 +7,8 @@
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
+#include "filter.h"
+#include "filteraveraging.h"
 
 namespace Ui {
 class MainWindow;
