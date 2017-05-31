@@ -4,13 +4,12 @@ Seed::Seed()
 {
     this->seedValue = (unsigned int *) malloc(sizeof(unsigned int) * DEFAULT_SEED_SIZE);
 
-    default_random_engine randomGenerator;
-    uniform_int_distribution<int> distribution(0, 9);
+    srand((unsigned int) time(0));
 
     // Generates an integer for each index.
     for (unsigned int i = 0; i < DEFAULT_SEED_SIZE; ++i)
     {
-        this->seedValue[i] = distribution(randomGenerator);
+        this->seedValue[i] = rand();
     }
 }
 

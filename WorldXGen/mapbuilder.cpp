@@ -34,8 +34,7 @@ MapBuilder * MapBuilder::setSeed(Seed * seed)
     return this;
 }
 
-MapBuilder * MapBuilder::applyErosion(float level)
+Map * MapBuilder::build()
 {
-    // TODO
-    return this;
+    return nullptr;
 }

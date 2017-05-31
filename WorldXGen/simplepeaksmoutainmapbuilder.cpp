@@ -12,8 +12,27 @@ SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(Si
     return this;
 }
 
-Map * SimplePeaksMoutainMapBuilder::build()
+Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
 {
+    srand(this->seed->getValue());
+
+    if (randomCurves)
+    {
+
+        float gaussianCurvesCount = Random::uniformDistribution(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);;
+
+        for (unsigned int i = 0; i < gaussianCurvesCount; ++i)
+        {
+            float   gShiftX = Random::uniformDistribution(0, (int) this->sizeX),
+                    gShiftY = Random::uniformDistribution(0, (int) this->sizeY),
+                    gSizeX = Random::uniformDistribution(0, (int) (this->sizeX - gShiftX)),
+                    gSizeY = Random::uniformDistribution(0, (int) (this->sizeY - gShiftY)),
+                    gSizeZ = Random::uniformDistribution(0, CURVE_HEIGHT_MAX);
+
+            addGaussianCurve(new Gaussian3DCurve(gShiftX, gShiftY, gSizeX, gSizeY, gSizeZ));
+        }
+    }
+
     Map * generatedMap = new Map(this->sizeX, this->sizeY);
 
     vector<Point3D *> points = *(generatedMap->getAllPoints());
@@ -38,6 +57,11 @@ Map * SimplePeaksMoutainMapBuilder::build()
     }
 
     return generatedMap;
+}
+
+Map * SimplePeaksMoutainMapBuilder::build()
+{
+    return SimplePeaksMoutainMapBuilder::build(true);
 }
 
 /*

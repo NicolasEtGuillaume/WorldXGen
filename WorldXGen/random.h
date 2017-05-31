@@ -22,6 +22,19 @@ public:
     static float Random::uniformDistribution(unsigned int seed);
 
     /**
+     * @brief Generates a floating point number between the given bounds, following a uniform distribution.
+     * @return The randomly generated number.
+     */
+    static float Random::uniformDistribution(int lowerBound, int upperBound);
+
+    /**
+     * @brief Generates a floating point number between the given bounds, following a uniform distribution.
+     * @param seed The seed to use for the generation.
+     * @return The randomly generated number.
+     */
+    static float Random::uniformDistribution(unsigned int seed, int lowerBound, int upperBound);
+
+    /**
      * @brief Generates a floating point number, following a normal distribution.
      * @param seed The seed to use for the generation.
      * @return The randomly generated number.

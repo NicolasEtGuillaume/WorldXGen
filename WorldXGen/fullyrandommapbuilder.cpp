@@ -2,6 +2,8 @@
 
 Map * FullyRandomMapBuilder::build()
 {
+    srand(this->seed->getValue());
+
     Map * generatedMap = new Map(this->sizeX, this->sizeY);
 
     for (unsigned int x = 0; x < this->sizeX; ++x) {
