@@ -28,8 +28,6 @@ Map * FilterAveraging::apply(Map * oldMap)
                     (unsigned int) y
         )->getZ();
 
-        cout << max(x - 1, 0.f) << endl;
-
         newZ += oldMap->getPoint(
                     (unsigned int) max(x - 1, 0.f),
                     (unsigned int) y
