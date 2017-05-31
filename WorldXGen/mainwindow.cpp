@@ -32,13 +32,13 @@ void MainWindow::on_actionNouveau_monde_triggered()
             m = new SimplePeaksMoutainMapBuilder();
     }
 
-
-
     if(!myDialog.isRandom()){
         m->setSeed(myDialog.getSeed());
+    } else {
+        m->setSeed(new Seed());
     }
-    m->setSizeX(myDialog.getSizeX());
-    m->setSizeY(myDialog.getSizeY());
+    m->setSizeX(myDialog.getSizeX())
+        ->setSizeY(myDialog.getSizeY());
     //((SimplePeaksMoutainMapBuilder *) m)->addGaussianCurve(new SimplePeaksMoutainMapBuilder::Gaussian3DCurve(myDialog.getSizeX()/2, myDialog.getSizeY()/2, 1., 1., 1.));
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();

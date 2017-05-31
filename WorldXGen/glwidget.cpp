@@ -62,7 +62,7 @@ void GLWidget::paintGL()
     qglColor(Qt::white);
     // Method : Vertex Array
     glEnableClientState(GL_VERTEX_ARRAY);
-    //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    // glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(3, GL_FLOAT, 0, m_vertexarray.constData());
 

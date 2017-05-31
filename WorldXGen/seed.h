@@ -3,7 +3,8 @@
 
 #define DEFAULT_SEED_SIZE   16
 
-#include <random>
+#include <time.h>
+#include <random.h>
 #include <string>
 #include <math.h>
 

@@ -11,6 +11,16 @@ float Random::uniformDistribution(unsigned int seed)
     return Random::uniformDistribution();
 }
 
+float Random::uniformDistribution(int lowerBound, int upperBound)
+{
+    return Random::uniformDistribution() * (upperBound - lowerBound) + lowerBound;
+}
+
+float Random::uniformDistribution(unsigned int seed, int lowerBound, int upperBound)
+{
+    return Random::uniformDistribution(seed) * (upperBound - lowerBound) + lowerBound;
+}
+
 float Random::normalDistribution(unsigned int seed)
 {
     float u1, u2;

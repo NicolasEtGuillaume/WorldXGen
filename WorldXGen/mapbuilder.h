@@ -52,17 +52,10 @@ public:
     MapBuilder * setSeed(Seed * seed);
 
     /**
-     * @brief Applies erosion on the map.
-     * @param level The level of erosion.
-     * @return Itself, the same MapBuilder instance (Factory pattern).
-     */
-    MapBuilder * applyErosion(float level);
-
-    /**
      * @brief Generates the map according to the given parameters.
      * @return The generated Map instance.
      */
-    virtual Map * build(){return nullptr;}
+    virtual Map * build();
 };
 
 #endif // MAPBUILDER_H
