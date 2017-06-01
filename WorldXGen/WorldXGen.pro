@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     simplepeaksmoutainmapbuilder.cpp \
     goutte.cpp \
     filter.cpp \
-    filteraveraging.cpp
+    filteraveraging.cpp \
+    goutte.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     simplepeaksmoutainmapbuilder.h \
     goutte.h \
     filter.h \
-    filteraveraging.h
+    filteraveraging.h \
+    goutte.h
 
 FORMS    += mainwindow.ui \
     nouveaumondedialog.ui
