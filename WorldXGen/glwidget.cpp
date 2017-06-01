@@ -62,14 +62,16 @@ void GLWidget::paintGL()
     qglColor(Qt::white);
     // Method : Vertex Array
     glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(3, GL_FLOAT, 0, m_vertexarray.constData());
 
     glDrawArrays(GL_TRIANGLES, 0, m_vertexarray.size());
 
     glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    //Affichage des gouttes
 
     //Affiche un repere
     glBegin(GL_LINES);
@@ -201,6 +203,8 @@ void GLWidget::updateMapView()
     m_vertexbuffer.bind();
     m_vertexbuffer.allocate(m_vertices.constData(), m_vertices.size() * sizeof(QVector3D));
     m_vertexbuffer.release();
+
+    // ajout des gouttes
 
     this->paintGL();
 }

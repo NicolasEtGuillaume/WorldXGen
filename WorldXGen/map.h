@@ -10,6 +10,7 @@
 #include <vector>
 #include "point3d.h"
 #include <iostream>
+#include "goutte.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class Map
 {
 private:
     vector<Point3D *> points;
+    vector<Goutte *> gouttes;
     string name;
     unsigned int sizeX;
     unsigned int sizeY;
@@ -49,6 +51,11 @@ public:
      * @return The name of the map.
      */
     string getName();
+
+
+    bool iterationEuler(float pas);
+
+    void addGoutte(float x, float y);
 
     /**
      * @brief Gets the map's X size.

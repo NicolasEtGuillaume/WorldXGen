@@ -43,3 +43,27 @@ void MainWindow::on_actionNouveau_monde_triggered()
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();
 }
+
+void MainWindow::on_pushButtonGoutteLancer_clicked()
+{
+    //Ajout d'une goutte
+    ui->widget->getMap()->addGoutte((float)ui->doubleSpinBoxGoutteX->value(),(float)ui->doubleSpinBoxGoutteY->value());
+    ui->widget->updateMapView();
+}
+
+void MainWindow::on_pushButtonGoutteSuivant_clicked()
+{
+    //appel d'une itération de euler
+    ui->widget->getMap()->iterationEuler(0.1);
+    ui->widget->updateMapView();
+}
+
+void MainWindow::on_pushButtonGoutteRes_clicked()
+{
+    //appel de euler jusqu'à la fin de la rivière
+    bool done = true;
+    while (done) {
+        done = ui->widget->getMap()->iterationEuler(0.1);
+    }
+    ui->widget->updateMapView();
+}

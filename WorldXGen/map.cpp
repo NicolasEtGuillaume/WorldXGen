@@ -44,6 +44,26 @@ string Map::getName()
     return this->name;
 }
 
+bool Map::iterationEuler(float pas)
+{
+    // Parcours les gouttes
+        // Si la rivière n'est pas fini (bool end)
+            // Repère la position de la goutte sur la map
+            // Calcul du gradient
+            // application sur le point (applyEuler() sur le point)
+
+    // Si aucune goutte n'a été traitée (ce sont toutes de rivières) renvois false sinon true
+    return false;
+}
+
+void Map::addGoutte(float x, float y)
+{
+    float z =0;
+    // Repère la position de la goutte sur la map
+    // calcul de z
+    gouttes.push_back(new Goutte(x,y,z));
+}
+
 unsigned int Map::getSizeX()
 {
     return this->sizeX;

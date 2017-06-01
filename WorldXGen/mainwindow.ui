@@ -71,7 +71,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBoxGoutte"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxGoutteX"/>
           </item>
          </layout>
         </item>
@@ -91,7 +91,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBoxGoutteY"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBoxGoutteY"/>
           </item>
          </layout>
         </item>

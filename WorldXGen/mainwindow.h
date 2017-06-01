@@ -25,6 +25,10 @@ private slots:
 
     void on_pushButtonGoutteLancer_clicked();
 
+    void on_pushButtonGoutteSuivant_clicked();
+
+    void on_pushButtonGoutteRes_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
