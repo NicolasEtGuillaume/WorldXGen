@@ -17,6 +17,7 @@ void Goutte::applyEuler(QVector3D gradient, float pas)
 {
     //applique Euler sur la goutte
     //ajoutte un point en direction du gradient à pas plus loin
+    //Projection sur le plan
 
     // Si on a pas assez bougé, end = true;
 }
