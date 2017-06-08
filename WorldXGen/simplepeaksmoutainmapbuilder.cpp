@@ -30,10 +30,10 @@ Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
         {
             float gShiftX, gShiftY, gSizeX, gSizeY, gSizeZ;
 
-            std::normal_distribution<float> d1(this->sizeX / 2.f, 4.f);
+            std::uniform_real_distribution<float> d1(0.f, this->sizeX);
             gShiftX = d1(gen);
 
-            std::normal_distribution<float> d2(this->sizeY / 2.f, 4.f);
+            std::uniform_real_distribution<float> d2(0.f, this->sizeY);
             gShiftY = d2(gen);
 
             std::normal_distribution<float> d3(this->sizeX / 8.f, 4.f);
