@@ -3,6 +3,8 @@
 
 #include <algorithm>
 #include <random>
+#define _USE_MATH_DEFINES
+#include "math.h"
 #include "random.h"
 #include "mapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
@@ -27,8 +29,9 @@ public:
         float gaussianSizeX;
         float gaussianSizeY;
         float gaussianSizeZ;
+        float theta;
 
-        Gaussian3DCurve(float gShiftX, float gShiftY, float gSizeX, float gSizeY, float gSizeZ);
+        Gaussian3DCurve(float gShiftX, float gShiftY, float gSizeX, float gSizeY, float gSizeZ, float gtheta);
 
         float getValue(float x, float y);
     };
@@ -44,6 +47,7 @@ public:
         float gaussianSizeX;
         float gaussianSizeY;
         float gaussianSizeZ;
+        float theta;
 
     public:
 
@@ -54,6 +58,7 @@ public:
         Gaussian3DCurveBuilder * setGaussianSizeX(float gSizeX);
         Gaussian3DCurveBuilder * setGaussianSizeY(float gSizeY);
         Gaussian3DCurveBuilder * setGaussianSizeZ(float gSizeZ);
+        Gaussian3DCurveBuilder * setTheta(float gTheta);
 
         Gaussian3DCurve * make();
     };
