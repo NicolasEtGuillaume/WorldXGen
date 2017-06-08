@@ -19,6 +19,7 @@ public:
 
     Point3D * getLastPoint();
     void applyEuler(QVector3D gradient, float pas);
+    bool getEnd() const;
 };
 
 #endif // GOUTTE_H
