@@ -19,7 +19,6 @@ void MainWindow::on_actionNouveau_monde_triggered()
     myDialog.setModal(true);
     myDialog.exec();
     MapBuilder * m;
-    cout << myDialog.getComboIndex() << endl;
     switch (myDialog.getComboIndex())
     {
         case 0 :
@@ -65,7 +64,7 @@ void MainWindow::on_pushButtonGoutteRes_clicked()
     //appel de euler jusqu'à la fin de la rivière
     bool done = true;
     while (done) {
-        done = ui->widget->getMap()->iterationEuler(0.02);
+        done = ui->widget->getMap()->iterationEuler(0.1);
     }
     ui->widget->updateMapView();
 }

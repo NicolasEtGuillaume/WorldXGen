@@ -97,7 +97,7 @@ bool Map::iterationEuler(float pas)
 
 
             // application sur le point (applyEuler() sur le point)
-            curGoutte->applyEuler(pente,pas);
+            curGoutte->applyEuler(*pente,pas,this->getSizeX(),this->getSizeY());
 
 
             //Projection sur le plan
