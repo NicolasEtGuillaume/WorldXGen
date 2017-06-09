@@ -19,7 +19,6 @@ void MainWindow::on_actionNouveau_monde_triggered()
     myDialog.setModal(true);
     myDialog.exec();
     MapBuilder * m;
-    cout << myDialog.getComboIndex() << endl;
     switch (myDialog.getComboIndex())
     {
         case 0 :

@@ -11,6 +11,7 @@
 #include "point3d.h"
 #include <iostream>
 #include "goutte.h"
+#include <math.h>
 
 using namespace std;
 
