@@ -65,7 +65,7 @@ void MainWindow::on_pushButtonGoutteRes_clicked()
     //appel de euler jusqu'à la fin de la rivière
     bool done = true;
     while (done) {
-        done = ui->widget->getMap()->iterationEuler(0.1);
+        done = ui->widget->getMap()->iterationEuler(0.02);
     }
     ui->widget->updateMapView();
 }

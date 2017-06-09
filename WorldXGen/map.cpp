@@ -72,17 +72,36 @@ bool Map::iterationEuler(float pas)
                 Point3D *pointA = this->getPoint((unsigned int) truncf(lastPoint->getX())+1,(unsigned int) truncf(lastPoint->getY())+1);
             }
 
-            // Calcul du gradient
+
+            QVector3D * vecPointA = new QVector3D(pointA->getX(),pointA->getY(),pointA->getZ());
+            QVector3D * vecPointB = new QVector3D(pointB->getX(),pointB->getY(),pointB->getZ());
+            QVector3D * vecPointC = new QVector3D(pointC->getX(),pointC->getY(),pointC->getZ());
+
+            // Calcul de la pente en 2 étapes
+            // 1 - détermination d'une normale
+            QVector3D * vecAB = new QVector3D(vecPointB->x()-vecPointA->x(),vecPointB->y()-vecPointA->y(),vecPointB->z()-vecPointA->z());
+            QVector3D * vecAC = new QVector3D(vecPointC->x()-vecPointA->x(),vecPointC->y()-vecPointA->y(),vecPointC->z()-vecPointA->z());
+            QVector3D * normale = new QVector3D(vecAB->y()*vecAC->z() - vecAC->y()*vecAB->z(),
+                                                -(vecAB->x()*vecAC->z() - vecAC->x()*vecAB->z()),
+                                                vecAB->x()*vecAC->y() - vecAC->x()*vecAB->y());
+
+            // 2 - calcul du vecteur directeur de la ligne de plus grande pente
+            // soit intersection entre le plan et celui formé par le vecteur normal et le projeté orthogonal
+            // de ce dernier sur l'horizontale
+            // vecteur normal (a,b,c)
+            // projeté (a,b,0)
+            // intersection : (ac,bc,a²+b²)
+            QVector3D * pente = new QVector3D(normale->x()*normale->z(),
+                                              normale->y()*normale->z(),
+                                              normale->x()*normale->x() + normale->y()*normale->y());
+
 
             // application sur le point (applyEuler() sur le point)
-
+            curGoutte->applyEuler(pente,pas);
 
 
             //Projection sur le plan
             QVector3D * vecGoutte = new QVector3D(lastPoint->getX(),lastPoint->getY(),0);
-            QVector3D * vecPointA = new QVector3D(pointA->getX(),pointA->getY(),pointA->getZ());
-            QVector3D * vecPointB = new QVector3D(pointB->getX(),pointB->getY(),pointB->getZ());
-            QVector3D * vecPointC = new QVector3D(pointC->getX(),pointC->getY(),pointC->getZ());
             lastPoint->setZ(- vecGoutte->distanceToPlane(*vecPointA,*vecPointB,*vecPointC));
         }
     }
