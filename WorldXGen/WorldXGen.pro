@@ -28,7 +28,10 @@ SOURCES += main.cpp \
     simplepeaksmoutainmapbuilder.cpp \
     goutte.cpp \
     filter.cpp \
-    filteraveraging.cpp
+    filteraveraging.cpp \
+    peaksmountainchainmapbuilder.cpp \
+    polynomialfunction.cpp \
+    gaussian3dcurve.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -42,7 +45,10 @@ HEADERS  += mainwindow.h \
     simplepeaksmoutainmapbuilder.h \
     goutte.h \
     filter.h \
-    filteraveraging.h
+    filteraveraging.h \
+    peaksmountainchainmapbuilder.h \
+    polynomialfunction.h \
+    gaussian3dcurve.h
 
 FORMS    += mainwindow.ui \
     nouveaumondedialog.ui

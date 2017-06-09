@@ -7,6 +7,7 @@
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
+#include "peaksmountainchainmapbuilder.h"
 #include "filter.h"
 #include "filteraveraging.h"
 

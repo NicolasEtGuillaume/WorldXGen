@@ -5,7 +5,7 @@ SimplePeaksMoutainMapBuilder::SimplePeaksMoutainMapBuilder()
 
 }
 
-SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(SimplePeaksMoutainMapBuilder::Gaussian3DCurve * curve)
+SimplePeaksMoutainMapBuilder * SimplePeaksMoutainMapBuilder::addGaussianCurve(Gaussian3DCurve * curve)
 {
     this->curves.push_back(curve);
 
@@ -22,7 +22,7 @@ Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
     if (randomCurves)
     {
 
-        float gaussianCurvesCount = Random::uniformDistribution(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);;
+        float gaussianCurvesCount = Random::uniformDistribution(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);
 
 
 
@@ -61,7 +61,7 @@ Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
         bool firstOne = true;
         float finalZValue;
 
-        for (SimplePeaksMoutainMapBuilder::Gaussian3DCurve * curve : this->curves)
+        for (Gaussian3DCurve * curve : this->curves)
         {
             float curveValue = curve->getValue(point->getX(), point->getY());
 
@@ -81,93 +81,4 @@ Map * SimplePeaksMoutainMapBuilder::build(bool randomCurves)
 Map * SimplePeaksMoutainMapBuilder::build()
 {
     return SimplePeaksMoutainMapBuilder::build(true);
-}
-
-/*
- * Gaussian3DCurve
- */
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurve::Gaussian3DCurve(float gShiftX, float gShiftY, float gSizeX, float gSizeY, float gSizeZ, float gTheta)
-{
-    this->gaussianShiftX    = gShiftX;
-    this->gaussianShiftY    = gShiftY;
-    this->gaussianSizeX     = gSizeX;
-    this->gaussianSizeY     = gSizeY;
-    this->gaussianSizeZ     = gSizeZ;
-    this->theta             = gTheta;
-}
-
-float SimplePeaksMoutainMapBuilder::Gaussian3DCurve::getValue(float x, float y)
-{
-
-    float   a = powf(cosf(this->theta), 2.f) / (2 * powf(this->gaussianSizeX, 2.f)) + powf(sinf(this->theta), 2.f) / (2 * powf(this->gaussianSizeY, 2.f)),
-            b = -sinf(2 * this->theta) / (4 * powf(this->gaussianSizeX, 2.f)) + sinf(2 * this->theta) / (4 * powf(this->gaussianSizeY, 2.f)),
-            c = powf(sinf(this->theta), 2.f) / (2 * powf(this->gaussianSizeX, 2.f)) + powf(cosf(this->theta), 2.f) / (2 * powf(this->gaussianSizeY, 2.f));
-
-
-    return exp(
-        -(a * powf(x - this->gaussianShiftX, 2.f) + 2 * b * (x - this->gaussianShiftX) * (y - this->gaussianShiftY) + c * powf(y - this->gaussianShiftY, 2.f))
-    ) * gaussianSizeZ;
-}
-
-
-/*
- * Gaussian3DCurveBuilder
- */
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::Gaussian3DCurveBuilder()
-{
-    this->gaussianShiftX    = 0.;
-    this->gaussianShiftY    = 0.;
-    this->gaussianSizeX     = 1.;
-    this->gaussianSizeY     = 1.;
-    this->gaussianSizeZ     = 1.;
-}
-
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setGaussianShiftX(float gShiftX)
-{
-    this->gaussianShiftX = gShiftX;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setGaussianShiftY(float gShiftY)
-{
-    this->gaussianShiftY = gShiftY;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setGaussianSizeX(float gSizeX)
-{
-    this->gaussianSizeX = gSizeX;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setGaussianSizeY(float gSizeY)
-{
-    this->gaussianSizeY = gSizeY;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setGaussianSizeZ(float gSizeZ)
-{
-    this->gaussianSizeZ = gSizeZ;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::setTheta(float gTheta)
-{
-    this->theta = gTheta;
-
-    return this;
-}
-
-SimplePeaksMoutainMapBuilder::Gaussian3DCurve * SimplePeaksMoutainMapBuilder::Gaussian3DCurveBuilder::make()
-{
-    return new SimplePeaksMoutainMapBuilder::Gaussian3DCurve(gaussianShiftX, gaussianShiftY, gaussianShiftX, gaussianShiftY, gaussianSizeZ, theta);
 }
