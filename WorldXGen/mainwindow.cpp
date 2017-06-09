@@ -28,6 +28,9 @@ void MainWindow::on_actionNouveau_monde_triggered()
         case 1 :
             m = new SimplePeaksMoutainMapBuilder();
             break;
+        case 2 :
+            m = new PeaksMountainChainMapBuilder();
+            break;
         default :
             m = new SimplePeaksMoutainMapBuilder();
     }

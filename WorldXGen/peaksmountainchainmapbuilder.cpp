@@ -14,23 +14,23 @@ Map * PeaksMountainChainMapBuilder::build()
 
     std::mt19937 gen(seedValue);
 
-    std::uniform_int_distribution<int> uniformD(0, MAX_POLYNOMIAL);
-    degree = uniformD(gen);
+    std::uniform_int_distribution<int> degreeRndDist(1, MAX_POLYNOMIAL);
+    degree = degreeRndDist(gen);
 
-    std::normal_distribution<float> normalD(0.f, 2.f);
+    std::uniform_real_distribution<float> uniformD2(-2.f, 2.f);
 
     PolynomialFunctionBuilder * fb = new PolynomialFunctionBuilder();
 
     for (float curDegree = 0.f; curDegree < degree; ++curDegree)
     {
-        float coefValue = normalD(gen);
+        float coefValue = uniformD2(gen);
         fb->addCoefficient(coefValue, curDegree);
     }
 
     PolynomialFunction * f = fb->build();
 
-    std::uniform_int_distribution<int> uniformD2(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);
-    float gaussianCurvesCount = uniformD2(gen);
+    std::uniform_int_distribution<int> uniformD3(RANDOM_CURVES_COUNT_MIN, RANDOM_CURVES_COUNT_MAX);
+    float gaussianCurvesCount = uniformD3(gen);
 
     for (unsigned int i = 0; i < gaussianCurvesCount; ++i)
     {
@@ -39,8 +39,11 @@ Map * PeaksMountainChainMapBuilder::build()
         std::uniform_real_distribution<float> d1(0.f, this->sizeX);
         gShiftX = d1(gen);
 
-        std::normal_distribution<float> d2(f->solve(gShiftX), 2.);
+        float solved = f->solve(gShiftX);
+        cout << "f(" << gShiftX << ") = " << solved << endl;
+        std::normal_distribution<float> d2(solved, 2.);
         gShiftY = d2(gen);
+        cout << gShiftY << endl;
 
         std::normal_distribution<float> d3(this->sizeX / 8.f, 4.f);
         gSizeX = d3(gen);

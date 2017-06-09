@@ -54,6 +54,11 @@
         <string>Mountain peaks</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Mountain peaks chain</string>
+       </property>
+      </item>
      </widget>
     </item>
     <item>
