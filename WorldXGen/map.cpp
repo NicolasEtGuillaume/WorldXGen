@@ -1,5 +1,10 @@
 #include "map.h"
 
+vector<Goutte *> Map::getGouttes() const
+{
+    return gouttes;
+}
+
 Map::Map(unsigned int sizeX, unsigned int sizeY)
 {
     this->sizeX = sizeX;
@@ -66,10 +71,11 @@ bool Map::iterationEuler(float pas)
             Point3D *pointA;
             if((lastPoint->getX() - truncf(lastPoint->getX()) + lastPoint->getY() - truncf(lastPoint->getY())) <= 1)
             {
-                Point3D *pointA = this->getPoint((unsigned int) truncf(lastPoint->getX()),(unsigned int) truncf(lastPoint->getY()));
+                pointA = this->getPoint((unsigned int) truncf(lastPoint->getX()),(unsigned int) truncf(lastPoint->getY()));
+                cout << pointA->getZ() << endl;
             }else
             {
-                Point3D *pointA = this->getPoint((unsigned int) truncf(lastPoint->getX())+1,(unsigned int) truncf(lastPoint->getY())+1);
+                pointA = this->getPoint((unsigned int) truncf(lastPoint->getX())+1,(unsigned int) truncf(lastPoint->getY())+1);
             }
 
 
@@ -94,15 +100,21 @@ bool Map::iterationEuler(float pas)
             QVector3D * pente = new QVector3D(normale->x()*normale->z(),
                                               normale->y()*normale->z(),
                                               normale->x()*normale->x() + normale->y()*normale->y());
+            pente->normalize();
 
 
             // application sur le point (applyEuler() sur le point)
             curGoutte->applyEuler(*pente,pas,this->getSizeX(),this->getSizeY());
 
 
-            //Projection sur le plan
-            QVector3D * vecGoutte = new QVector3D(lastPoint->getX(),lastPoint->getY(),0);
-            lastPoint->setZ(- vecGoutte->distanceToPlane(*vecPointA,*vecPointB,*vecPointC));
+            //Projection sur le plan (recalcule de z)
+
+            float ABz = pointB->getZ() - pointA->getZ();
+            float ACz = pointC->getZ() - pointA->getZ();
+            float uz = ABz * fabsf(lastPoint->getX() - pointA->getX());
+            float vz = ACz * fabsf(lastPoint->getY() - pointA->getY());
+
+            lastPoint->setZ(pointA->getZ() + uz + vz);
         }
     }
 
@@ -113,6 +125,7 @@ bool Map::iterationEuler(float pas)
 void Map::addGoutte(float x, float y)
 {
     float z =0;
+
     // Repère la position de la goutte sur la map
     Point3D *pointB = this->getPoint((unsigned int) truncf(x)+1,(unsigned int) truncf(y));
     Point3D *pointC = this->getPoint((unsigned int) truncf(x),(unsigned int) truncf(y)+1);
@@ -126,16 +139,17 @@ void Map::addGoutte(float x, float y)
         pointA = this->getPoint((unsigned int) truncf(x)+1,(unsigned int) truncf(y)+1);
     }
 
-    // calcul de z
-    QVector3D * goutte = new QVector3D(x,y,z);
-    QVector3D * vecPointA = new QVector3D(pointA->getX(),pointA->getY(),pointA->getZ());
-    QVector3D * vecPointB = new QVector3D(pointB->getX(),pointB->getY(),pointB->getZ());
-    QVector3D * vecPointC = new QVector3D(pointC->getX(),pointC->getY(),pointC->getZ());
-    z = - goutte->distanceToPlane(*vecPointA,*vecPointB,*vecPointC);
+    // calcule de z
 
+    float ABz = pointB->getZ() - pointA->getZ();
+    float ACz = pointC->getZ() - pointA->getZ();
+    float uz = ABz * fabsf(x - pointA->getX());
+    float vz = ACz * fabsf(y - pointA->getY());
 
+    z = pointA->getZ() + uz + vz;
 
-    gouttes.push_back(new Goutte(x,y,z));
+    Goutte * goutte = new Goutte(x,y,z);
+    this->gouttes.push_back(goutte);
 }
 
 unsigned int Map::getSizeX()

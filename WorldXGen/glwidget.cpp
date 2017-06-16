@@ -31,6 +31,9 @@ void GLWidget::initializeGL()
     x_rot = 0;
     y_rot = 0;
     z_rot = 0;
+    cameraAimX = 0.0;
+    cameraAimY = 0.0;
+    cameraAimZ = 0.0;
 
     // GL options
 
@@ -46,8 +49,8 @@ void GLWidget::paintGL()
     // Model view matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(0.0, 0.0, -distance,
-              0.0, 0.0, 0.0,
+    gluLookAt(cameraAimX, 0.0, -distance+cameraAimY,//TODO
+              cameraAimX, 0.0, cameraAimY,
               0.0, 1.0, 0.0);
 
     glRotatef(x_rot / 16.0f, 1.0f, 0.0f, 0.0f);
@@ -65,13 +68,18 @@ void GLWidget::paintGL()
     //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(3, GL_FLOAT, 0, m_vertexarray.constData());
-
     glDrawArrays(GL_TRIANGLES, 0, m_vertexarray.size());
+
+
+    //Affichage des gouttes
+    qglColor(Qt::cyan);
+    glVertexPointer(3, GL_FLOAT, 0, g_vertexarray.constData());
+    glDrawArrays(GL_LINES, 0, g_vertexarray.size());
 
     glDisableClientState(GL_VERTEX_ARRAY);
     //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
-    //Affichage des gouttes
+
 
     //Affiche un repere
     glBegin(GL_LINES);
@@ -114,6 +122,11 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     {
         rotateBy(dy*8, 0, 0);
         rotateBy(0, dx*8, 0);
+    }
+    if (event->buttons() & Qt::LeftButton)
+    {
+        this->cameraAimX -= dx/8.0f;
+        this->cameraAimY += dy/8.0f;
     }
     last_pos = event->pos();
     updateGL();
@@ -205,6 +218,40 @@ void GLWidget::updateMapView()
     m_vertexbuffer.release();
 
     // ajout des gouttes
+    if(!map->getGouttes().empty())
+    {
+
+        g_vertices.clear();
+        g_vertexarray.clear();
+        g_vertices.reserve(map->getGouttes()[0]->getPoints().size());
+        for(unsigned int i=0; i < map->getGouttes().size(); i++)
+        {
+            Goutte * curGoutte = map->getGouttes()[i];
+
+            for(unsigned int j=0; j < curGoutte->getPoints().size(); j++)
+            {
+                p = *curGoutte->getPoints()[j];
+                vertice.setX((p.getX()/MAP_SIZE_LIMITER) - (vertices_by_x/MAP_SIZE_LIMITER/2));
+                vertice.setY(p.getZ()/MAP_SIZE_LIMITER);
+                vertice.setZ((p.getZ()/MAP_SIZE_LIMITER) - (vertices_by_z/MAP_SIZE_LIMITER/2));
+
+                g_vertices.push_back(vertice);
+            }
+        }
+        g_vertexarray.reserve((g_vertices.size()-1)*2);
+        for(unsigned int i=0; i < (g_vertices.size()-2); i++)
+        {
+            g_vertexarray.push_back(g_vertices[i]);
+            g_vertexarray.push_back(g_vertices[i+1]);
+        }
+
+        g_vertexbuffer.create();
+        g_vertexbuffer.bind();
+        g_vertexbuffer.allocate(g_vertices.constData(),g_vertices.size() * sizeof(QVector3D));
+        g_vertexbuffer.release();
+    }
+
+
 
     this->paintGL();
 }

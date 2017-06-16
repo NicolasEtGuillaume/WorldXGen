@@ -20,6 +20,7 @@ public:
     Point3D * getLastPoint();
     void applyEuler(QVector3D gradient, float pas, unsigned int mapSizeX, unsigned int mapSizeY);
     bool getEnd() const;
+    vector<Point3D *> getPoints() const;
 };
 
 #endif // GOUTTE_H

@@ -69,6 +69,8 @@ public:
      * @return The map's Y size.
      */
     unsigned int getSizeY();
+
+    vector<Goutte *> getGouttes() const;
 };
 
 #endif // MAP_H

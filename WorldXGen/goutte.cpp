@@ -5,6 +5,11 @@ bool Goutte::getEnd() const
     return end;
 }
 
+vector<Point3D *> Goutte::getPoints() const
+{
+    return points;
+}
+
 Goutte::Goutte(float x, float y, float z)
 {
     Point3D * p;
@@ -20,7 +25,7 @@ Point3D *Goutte::getLastPoint()
 
 void Goutte::applyEuler(QVector3D gradient, float pas, unsigned int mapSizeX, unsigned int mapSizeY)
 {
-    float epsilon = 0.001;
+    float epsilon = 0.001f;
 
     //applique Euler sur la goutte
     //ajoutte un point en direction du gradient à pas plus loin
@@ -30,9 +35,9 @@ void Goutte::applyEuler(QVector3D gradient, float pas, unsigned int mapSizeX, un
                               lastPoint->getZ() + gradient.z()*pas);
 
     // Si on a pas assez bougé ou que l'on est sorti de la map, la rivière est fini sinon on push
-    if(((lastPoint->getX()-p->getX() < epsilon) && (lastPoint->getY()-p->getY() < epsilon)
+    if(((lastPoint->getX()-p->getX() < epsilon) && (lastPoint->getY()-p->getY() < epsilon))
         ||
-        (p->getX() > mapSizeX-1 || p->getY() > mapSizeY-1)))
+        (p->getX() > mapSizeX-1 || p->getY() > mapSizeY-1))
     {
         this->end = true;
     }else{
