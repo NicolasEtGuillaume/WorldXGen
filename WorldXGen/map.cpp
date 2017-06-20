@@ -72,11 +72,12 @@ bool Map::iterationEuler(float pas)
             if((lastPoint->getX() - truncf(lastPoint->getX()) + lastPoint->getY() - truncf(lastPoint->getY())) <= 1)
             {
                 pointA = this->getPoint((unsigned int) truncf(lastPoint->getX()),(unsigned int) truncf(lastPoint->getY()));
-                cout << pointA->getZ() << endl;
             }else
             {
                 pointA = this->getPoint((unsigned int) truncf(lastPoint->getX())+1,(unsigned int) truncf(lastPoint->getY())+1);
             }
+            cout << "x : " << lastPoint->getX() << " " << lastPoint->getY() << endl;
+            cout << "a : " << pointA->getX() << " " << pointA->getY() << "; b : " << pointB->getX() << " " << pointB->getY()  << "; c : " << pointC->getX() << " " << pointC->getY() << endl;
 
 
             QVector3D * vecPointA = new QVector3D(pointA->getX(),pointA->getY(),pointA->getZ());
@@ -111,8 +112,16 @@ bool Map::iterationEuler(float pas)
 
             float ABz = pointB->getZ() - pointA->getZ();
             float ACz = pointC->getZ() - pointA->getZ();
-            float uz = ABz * fabsf(lastPoint->getX() - pointA->getX());
-            float vz = ACz * fabsf(lastPoint->getY() - pointA->getY());
+            float uz;
+            float vz;
+            if(pointA->getX() < pointB->getX()) // Si triangle a b c
+            {
+                uz = ABz * fabsf(lastPoint->getX() - pointA->getX());
+                vz = ACz * fabsf(lastPoint->getY() - pointA->getY());
+            }else{ // Si triangle b c a
+                uz = ACz * fabsf(lastPoint->getX() - pointA->getX());
+                vz = ABz * fabsf(lastPoint->getY() - pointA->getY());
+            }
 
             lastPoint->setZ(pointA->getZ() + uz + vz);
         }
@@ -143,8 +152,18 @@ void Map::addGoutte(float x, float y)
 
     float ABz = pointB->getZ() - pointA->getZ();
     float ACz = pointC->getZ() - pointA->getZ();
-    float uz = ABz * fabsf(x - pointA->getX());
-    float vz = ACz * fabsf(y - pointA->getY());
+    float uz;
+    float vz;
+    if(pointA->getX() < pointB->getX()) // Si triangle a b c
+    {
+        uz = ABz * fabsf(x - pointA->getX());
+        vz = ACz * fabsf(y - pointA->getY());
+    }else{ // Si triangle b c a
+        uz = ACz * fabsf(x - pointA->getX());
+        vz = ABz * fabsf(y - pointA->getY());
+    }
+
+
 
     z = pointA->getZ() + uz + vz;
 

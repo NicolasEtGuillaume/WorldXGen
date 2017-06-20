@@ -184,6 +184,7 @@ void GLWidget::updateMapView()
 //                vertice.setY(p.getZ());
 //                vertice.setZ(z);
 //                vertice.normalize();
+
                 vertice.setX((x/MAP_SIZE_LIMITER) - (vertices_by_x/MAP_SIZE_LIMITER/2));
                 vertice.setY(p.getZ()/MAP_SIZE_LIMITER);
                 vertice.setZ((z/MAP_SIZE_LIMITER) - (vertices_by_z/MAP_SIZE_LIMITER/2));
@@ -231,15 +232,17 @@ void GLWidget::updateMapView()
             for(unsigned int j=0; j < curGoutte->getPoints().size(); j++)
             {
                 p = *curGoutte->getPoints()[j];
+                cout << "l : " << p.getX() << " " << p.getY() << endl;
+
                 vertice.setX((p.getX()/MAP_SIZE_LIMITER) - (vertices_by_x/MAP_SIZE_LIMITER/2));
                 vertice.setY(p.getZ()/MAP_SIZE_LIMITER);
-                vertice.setZ((p.getZ()/MAP_SIZE_LIMITER) - (vertices_by_z/MAP_SIZE_LIMITER/2));
+                vertice.setZ((p.getY()/MAP_SIZE_LIMITER) - (vertices_by_z/MAP_SIZE_LIMITER/2));
 
                 g_vertices.push_back(vertice);
             }
         }
         g_vertexarray.reserve((g_vertices.size()-1)*2);
-        for(unsigned int i=0; i < (g_vertices.size()-2); i++)
+        for(int i=0; i < (g_vertices.size()-2); i++)
         {
             g_vertexarray.push_back(g_vertices[i]);
             g_vertexarray.push_back(g_vertices[i+1]);
