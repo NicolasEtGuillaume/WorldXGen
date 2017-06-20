@@ -67,7 +67,7 @@
        <bool>true</bool>
       </property>
       <property name="text">
-       <string>Génération aléatoire</string>
+       <string>Random seed</string>
       </property>
       <property name="checked">
        <bool>true</bool>
@@ -86,7 +86,7 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Largeur</string>
+         <string>Width</string>
         </property>
        </widget>
       </item>
@@ -103,7 +103,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Longueur</string>
+         <string>Length</string>
         </property>
        </widget>
       </item>
