@@ -12,6 +12,8 @@
 #include "mapbuilder.h"
 #include "map.h"
 #include <iostream>
+#include "filter.h"
+
 class GLWidget : public QGLWidget
 {
     Q_OBJECT
@@ -37,6 +39,12 @@ public:
     Map * getMap() const;
     void setMap(Map * value);
 
+
+    void addMapFilter(Filter * filter);
+    void removeMapFilter(int filterIndex);
+    int getMapFiltersCount();
+    Filter * getMapFilter(int filterIndex);
+
 private:
     void rotateBy(int x, int y, int z);
 
@@ -46,6 +54,7 @@ private:
     QVector<QVector3D> m_vertices;
 
     Map * map;
+    vector<Filter *> filters;
 
     // GPU Buffer
     QGLBuffer m_vertexbuffer;

@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     polynomialfunction.cpp \
     gaussian3dcurve.cpp \
     filtermatrix.cpp \
-    newworlddialog.cpp
+    newworlddialog.cpp \
+    editfilterdialog.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -50,7 +51,9 @@ HEADERS  += mainwindow.h \
     polynomialfunction.h \
     gaussian3dcurve.h \
     filtermatrix.h \
-    newworlddialog.h
+    newworlddialog.h \
+    editfilterdialog.h
 
 FORMS    += mainwindow.ui \
-    newworlddialog.ui
+    newworlddialog.ui \
+    editfilterdialog.ui

@@ -52,7 +52,7 @@
       </property>
       <widget class="QWidget" name="tabGoutte">
        <attribute name="title">
-        <string>Goutte</string>
+        <string>Water drop</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
@@ -133,10 +133,33 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tabFilters">
        <attribute name="title">
-        <string>Filtres</string>
+        <string>Filters</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QListWidget" name="filterListWidget"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="addFilterButton">
+            <property name="text">
+             <string>Add Filter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeFilterButton">
+            <property name="text">
+             <string>Remove Filter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

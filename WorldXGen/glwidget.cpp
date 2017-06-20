@@ -139,9 +139,32 @@ Map * GLWidget::getMap() const
 
 void GLWidget::setMap(Map * value)
 {
-    map = value;
+    Map * filteredMap = value;
+    for (Filter * filter : this->filters) {
+        filteredMap = filter->apply(filteredMap);
+    }
+    this->map = filteredMap;
 }
 
+void GLWidget::addMapFilter(Filter * filter)
+{
+    this->filters.push_back(filter);
+}
+
+void GLWidget::removeMapFilter(int filterIndex)
+{
+    this->filters.erase(this->filters.begin() + filterIndex);
+}
+
+int GLWidget::getMapFiltersCount()
+{
+    return (int) this->filters.size();
+}
+
+Filter * GLWidget::getMapFilter(int filterIndex)
+{
+    return this->filters[filterIndex];
+}
 
 void GLWidget::updateMapView()
 {

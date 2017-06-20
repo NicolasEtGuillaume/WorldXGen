@@ -3,17 +3,22 @@
 
 #include <QMainWindow>
 #include <QDialog>
+#include <valarray>
 #include "newworlddialog.h"
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
 #include "peaksmountainchainmapbuilder.h"
 #include "filter.h"
+#include "filtermatrix.h"
 #include "filteraveraging.h"
+#include "editfilterdialog.h"
 
 namespace Ui {
 class MainWindow;
 }
+
+using namespace std;
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +27,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void updateFiltersView();
 
 private slots:
     void on_actionNewWorld_triggered();
@@ -32,8 +39,13 @@ private slots:
 
     void on_pushButtonGoutteRes_clicked();
 
+    void on_addFilterButton_clicked();
+
+    void on_removeFilterButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H
