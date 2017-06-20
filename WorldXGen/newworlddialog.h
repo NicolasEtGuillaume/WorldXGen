@@ -4,16 +4,16 @@
 #include <QDialog>
 
 namespace Ui {
-class NouveauMondeDialog;
+class NewWorldDialog;
 }
 
-class NouveauMondeDialog : public QDialog
+class NewWorldDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit NouveauMondeDialog(QWidget *parent = 0);
-    ~NouveauMondeDialog();
+    explicit NewWorldDialog(QWidget *parent = 0);
+    ~NewWorldDialog();
 
     std::string getSeed();
     bool isRandom();
@@ -22,7 +22,7 @@ public:
     int getSizeY();
 
 private:
-    Ui::NouveauMondeDialog *ui;
+    Ui::NewWorldDialog *ui;
 };
 
 #endif // NOUVEAUMONDEDIALOG_H

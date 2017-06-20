@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QDialog>
-#include "nouveaumondedialog.h"
+#include "newworlddialog.h"
 #include "mapbuilder.h"
 #include "fullyrandommapbuilder.h"
 #include "simplepeaksmoutainmapbuilder.h"
@@ -24,7 +24,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionNouveau_monde_triggered();
+    void on_actionNewWorld_triggered();
 
     void on_pushButtonGoutteLancer_clicked();
 

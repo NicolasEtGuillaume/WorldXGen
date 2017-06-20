@@ -13,9 +13,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionNouveau_monde_triggered()
+void MainWindow::on_actionNewWorld_triggered()
 {
-    NouveauMondeDialog myDialog;
+    NewWorldDialog myDialog;
     myDialog.setModal(true);
     myDialog.exec();
     MapBuilder * m;

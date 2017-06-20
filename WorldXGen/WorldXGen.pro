@@ -22,7 +22,6 @@ SOURCES += main.cpp \
     seed.cpp \
     map.cpp \
     mapbuilder.cpp \
-    nouveaumondedialog.cpp \
     random.cpp \
     fullyrandommapbuilder.cpp \
     simplepeaksmoutainmapbuilder.cpp \
@@ -31,7 +30,9 @@ SOURCES += main.cpp \
     filteraveraging.cpp \
     peaksmountainchainmapbuilder.cpp \
     polynomialfunction.cpp \
-    gaussian3dcurve.cpp
+    gaussian3dcurve.cpp \
+    filtermatrix.cpp \
+    newworlddialog.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -39,7 +40,6 @@ HEADERS  += mainwindow.h \
     seed.h \
     map.h \
     mapbuilder.h \
-    nouveaumondedialog.h \
     random.h \
     fullyrandommapbuilder.h \
     simplepeaksmoutainmapbuilder.h \
@@ -48,7 +48,9 @@ HEADERS  += mainwindow.h \
     filteraveraging.h \
     peaksmountainchainmapbuilder.h \
     polynomialfunction.h \
-    gaussian3dcurve.h
+    gaussian3dcurve.h \
+    filtermatrix.h \
+    newworlddialog.h
 
 FORMS    += mainwindow.ui \
-    nouveaumondedialog.ui
+    newworlddialog.ui

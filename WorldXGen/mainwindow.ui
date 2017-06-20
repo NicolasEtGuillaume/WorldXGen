@@ -39,7 +39,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -148,14 +148,14 @@
      <x>0</x>
      <y>0</y>
      <width>688</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNouveau_monde"/>
+    <addaction name="actionNewWorld"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -174,7 +174,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionNouveau_monde"/>
+   <addaction name="actionNewWorld"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -186,9 +186,9 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionNouveau_monde">
+  <action name="actionNewWorld">
    <property name="text">
-    <string>Nouveau monde</string>
+    <string>New world</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -322,7 +322,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionNouveau_monde</sender>
+   <sender>actionNewWorld</sender>
    <signal>triggered(bool)</signal>
    <receiver>pushButtonGoutteLancer</receiver>
    <slot>setDisabled(bool)</slot>
