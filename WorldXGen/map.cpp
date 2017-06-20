@@ -10,6 +10,7 @@ Map::Map(unsigned int sizeX, unsigned int sizeY)
     this->sizeX = sizeX;
     this->sizeY = sizeY;
     Point3D * pompote;
+    gouttes.reserve(1);
     for (unsigned int x = 0; x < sizeX; ++x)
     {
         for (unsigned int y = 0; y < sizeY; ++y)

@@ -45,7 +45,7 @@ private:
     QVector<QVector3D> m_vertexarray;
     QVector<QVector3D> m_vertices;
 
-    QVector<QVector3D> g_vertexarray;
+    QVector<QVector<QVector3D>> g_vertexarray;
     QVector<QVector3D> g_vertices;
 
     Map * map;
