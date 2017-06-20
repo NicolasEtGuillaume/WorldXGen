@@ -35,9 +35,9 @@ void Goutte::applyEuler(QVector3D gradient, float pas, unsigned int mapSizeX, un
                               lastPoint->getZ() + gradient.z()*pas);
 
     // Si on a pas assez bougé ou que l'on est sorti de la map, la rivière est fini sinon on push
-    if(((lastPoint->getX()-p->getX() < epsilon) && (lastPoint->getY()-p->getY() < epsilon))
+    if(((lastPoint->getX() - p->getX() < epsilon) && (lastPoint->getY() - p->getY() < epsilon) && (lastPoint->getZ() - p->getZ() < epsilon))
         ||
-        (p->getX() > mapSizeX-1 || p->getY() > mapSizeY-1))
+        (p->getX() > mapSizeX-1 || p->getY() > mapSizeY-1 || p->getX() < 0 || p->getY() < 0))
     {
         this->end = true;
     }else{

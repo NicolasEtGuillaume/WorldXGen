@@ -76,8 +76,6 @@ bool Map::iterationEuler(float pas)
             {
                 pointA = this->getPoint((unsigned int) truncf(lastPoint->getX())+1,(unsigned int) truncf(lastPoint->getY())+1);
             }
-            cout << "x : " << lastPoint->getX() << " " << lastPoint->getY() << endl;
-            cout << "a : " << pointA->getX() << " " << pointA->getY() << "; b : " << pointB->getX() << " " << pointB->getY()  << "; c : " << pointC->getX() << " " << pointC->getY() << endl;
 
 
             QVector3D * vecPointA = new QVector3D(pointA->getX(),pointA->getY(),pointA->getZ());

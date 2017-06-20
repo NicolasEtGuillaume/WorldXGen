@@ -55,7 +55,7 @@ void MainWindow::on_pushButtonGoutteLancer_clicked()
 void MainWindow::on_pushButtonGoutteSuivant_clicked()
 {
     //appel d'une itération de euler
-    ui->widget->getMap()->iterationEuler(0.1f);
+    for(int i = 0; i <= 50 ; i++) ui->widget->getMap()->iterationEuler(0.01f);
     ui->widget->updateMapView();
 }
 
@@ -64,7 +64,7 @@ void MainWindow::on_pushButtonGoutteRes_clicked()
     //appel de euler jusqu'à la fin de la rivière
     bool done = true;
     while (done) {
-        done = ui->widget->getMap()->iterationEuler(0.1f);
+        done = ui->widget->getMap()->iterationEuler(0.01f);
     }
     ui->widget->updateMapView();
 }

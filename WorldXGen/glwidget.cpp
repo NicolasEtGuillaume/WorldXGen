@@ -232,7 +232,6 @@ void GLWidget::updateMapView()
             for(unsigned int j=0; j < curGoutte->getPoints().size(); j++)
             {
                 p = *curGoutte->getPoints()[j];
-                cout << "l : " << p.getX() << " " << p.getY() << endl;
 
                 vertice.setX((p.getX()/MAP_SIZE_LIMITER) - (vertices_by_x/MAP_SIZE_LIMITER/2));
                 vertice.setY(p.getZ()/MAP_SIZE_LIMITER);
