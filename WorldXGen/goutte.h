@@ -5,6 +5,7 @@
 #include <vector>
 #include "point3d.h"
 #include <QVector3D>
+#include <iostream>
 
 using namespace std;
 
