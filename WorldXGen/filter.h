@@ -1,6 +1,7 @@
 #ifndef FILTER_H
 #define FILTER_H
 
+#include <QString>
 #include "map.h"
 
 class Filter
@@ -14,6 +15,9 @@ public:
      * @return A new map with modifications applied.
      */
     virtual Map * apply(Map * map) = 0;
+
+    QString customName;
+
 };
 
 #endif // FILTER_H

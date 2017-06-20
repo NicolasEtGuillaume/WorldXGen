@@ -2,6 +2,7 @@
 #define EDITFILTERDIALOG_H
 
 #include <QDialog>
+#include <QString>
 #include <valarray>
 
 namespace Ui {
@@ -19,6 +20,7 @@ public:
     ~EditFilterDialog();
 
     valarray<int> * getMatrix();
+    QString getCustomName();
 
 private:
     Ui::EditFilterDialog *ui;

@@ -42,11 +42,26 @@ public:
 
     void addMapFilter(Filter * filter);
     void removeMapFilter(int filterIndex);
+    void moveMapFilterUp(int filterIndex);
+    void moveMapFilterDown(int filterIndex);
     int getMapFiltersCount();
     Filter * getMapFilter(int filterIndex);
+    QString getMapFilterName(int filterIndex);
 
 private:
     void rotateBy(int x, int y, int z);
+
+    /**
+     * Moves a range of values in a vector.
+     * @param start     The range start position.
+     * @param length    The range length.
+     * @param dst       The range new start position.
+     * @param v         The vector.
+     *
+     * @author Kerrek SB
+     * @see https://stackoverflow.com/questions/7527674/what-is-the-most-effective-way-to-move-items-within-a-vector
+     */
+    void move_range(size_t start, size_t length, size_t dst, std::vector<Filter *> & v);
 
 private:
 

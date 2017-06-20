@@ -81,7 +81,14 @@ void MainWindow::on_addFilterButton_clicked()
 
     if (editFilterDialog.result() == editFilterDialog.Rejected) return;
 
-    FilterMatrix * filter = new FilterMatrix();
+    QString filterCustomName = editFilterDialog.getCustomName();
+    FilterMatrix * filter;
+    if (filterCustomName.length() > 0) {
+        filter = new FilterMatrix(filterCustomName);
+    } else {
+        filter = new FilterMatrix();
+    }
+
     valarray<int> * matrix = editFilterDialog.getMatrix(); // vector<line<int>>
     filter->setMatrix(matrix);
 
@@ -99,13 +106,33 @@ void MainWindow::on_removeFilterButton_clicked()
     updateFiltersView();
 }
 
+void MainWindow::on_moveUpButton_clicked()
+{
+    QModelIndexList indexesList = ui->filterListWidget->selectionModel()->selectedIndexes();
+    for (QModelIndex index : indexesList)
+    {
+        ui->widget->moveMapFilterUp(index.row());
+    }
+    updateFiltersView();
+}
+
+void MainWindow::on_moveDownButton_clicked()
+{
+    QModelIndexList indexesList = ui->filterListWidget->selectionModel()->selectedIndexes();
+    for (QModelIndex index : indexesList)
+    {
+        ui->widget->moveMapFilterDown(index.row());
+    }
+    updateFiltersView();
+}
+
 void MainWindow::updateFiltersView()
 {
     ui->filterListWidget->clear();
     int count = ui->widget->getMapFiltersCount();
     for (int i = 0; i < count; ++i)
     {
-        QString name = "Filter : matrix " + QString::number(i);
+        QString name = QString::number(i) + ". " + ui->widget->getMapFilterName(i);
         ui->filterListWidget->addItem(name);
     }
 }

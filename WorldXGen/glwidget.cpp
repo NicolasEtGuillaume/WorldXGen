@@ -156,6 +156,20 @@ void GLWidget::removeMapFilter(int filterIndex)
     this->filters.erase(this->filters.begin() + filterIndex);
 }
 
+void GLWidget::moveMapFilterUp(int filterIndex)
+{
+    if (filterIndex - 1 < 0) return;
+    cout << "up" << endl;
+    iter_swap(this->filters.begin() + filterIndex, this->filters.begin() + filterIndex - 1);
+}
+
+void GLWidget::moveMapFilterDown(int filterIndex)
+{
+    if (filterIndex + 1 == this->filters.size()) return;
+    cout << "down" << endl;
+    iter_swap(this->filters.begin() + filterIndex, this->filters.begin() + filterIndex + 1);
+}
+
 int GLWidget::getMapFiltersCount()
 {
     return (int) this->filters.size();
@@ -164,6 +178,10 @@ int GLWidget::getMapFiltersCount()
 Filter * GLWidget::getMapFilter(int filterIndex)
 {
     return this->filters[filterIndex];
+}
+
+QString GLWidget::getMapFilterName(int filterIndex) {
+    return this->filters[filterIndex]->customName;
 }
 
 void GLWidget::updateMapView()

@@ -142,18 +142,36 @@
          <widget class="QListWidget" name="filterListWidget"/>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="addFilterButton">
+           <widget class="QPushButton" name="moveUpButton">
             <property name="text">
-             <string>Add Filter</string>
+             <string>Move up</string>
             </property>
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="moveDownButton">
+            <property name="text">
+             <string>Move down</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
            <widget class="QPushButton" name="removeFilterButton">
             <property name="text">
              <string>Remove Filter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addFilterButton">
+            <property name="text">
+             <string>Add Filter</string>
             </property>
            </widget>
           </item>

@@ -45,3 +45,8 @@ valarray<int> * EditFilterDialog::getMatrix()
 
     return matrix;
 }
+
+QString EditFilterDialog::getCustomName()
+{
+    return ui->customNameLineEdit->text();
+}
