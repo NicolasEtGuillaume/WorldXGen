@@ -40,10 +40,8 @@ Map * PeaksMountainChainMapBuilder::build()
         gShiftX = d1(gen);
 
         float solved = f->solve(gShiftX);
-        cout << "f(" << gShiftX << ") = " << solved << endl;
         std::normal_distribution<float> d2(solved, 2.);
         gShiftY = d2(gen);
-        cout << gShiftY << endl;
 
         std::normal_distribution<float> d3(this->sizeX / 8.f, 4.f);
         gSizeX = d3(gen);
