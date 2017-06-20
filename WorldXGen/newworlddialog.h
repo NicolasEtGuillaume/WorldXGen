@@ -1,5 +1,5 @@
-#ifndef NOUVEAUMONDEDIALOG_H
-#define NOUVEAUMONDEDIALOG_H
+#ifndef NEWWORLDDIALOG_H
+#define NEWWORLDDIALOG_H
 
 #include <QDialog>
 
@@ -25,4 +25,4 @@ private:
     Ui::NewWorldDialog *ui;
 };
 
-#endif // NOUVEAUMONDEDIALOG_H
+#endif // NEWWORLDDIALOG_H
