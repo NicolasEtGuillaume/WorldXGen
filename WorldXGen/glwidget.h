@@ -56,11 +56,15 @@ private:
     QVector<QVector3D> m_vertexarray;
     QVector<QVector3D> m_vertices;
 
+    QVector<QVector<QVector3D>> g_vertexarray;
+    QVector<QVector3D> g_vertices;
+
     Map * map;
     vector<FilterMatrix *> filters;
 
     // GPU Buffer
     QGLBuffer m_vertexbuffer;
+    QGLBuffer g_vertexbuffer;
 
     // Heightmap infos
     int vertices_by_x;
@@ -74,6 +78,9 @@ private:
     qreal x_rot;
     qreal y_rot;
     qreal z_rot;
+    GLdouble cameraAimX;
+    GLdouble cameraAimY;
+    GLdouble cameraAimZ;
 };
 
 #endif // GLWIDGET_H
