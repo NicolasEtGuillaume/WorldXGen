@@ -162,16 +162,23 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="removeFilterButton">
+           <widget class="QPushButton" name="addFilterButton">
             <property name="text">
-             <string>Remove Filter</string>
+             <string>Add</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="addFilterButton">
+           <widget class="QPushButton" name="editFilterButton">
             <property name="text">
-             <string>Add Filter</string>
+             <string>Edit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeFilterButton">
+            <property name="text">
+             <string>Remove</string>
             </property>
            </widget>
           </item>

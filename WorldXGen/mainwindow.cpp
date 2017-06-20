@@ -96,6 +96,26 @@ void MainWindow::on_addFilterButton_clicked()
     updateFiltersView();
 }
 
+void MainWindow::on_editFilterButton_clicked()
+{
+    QModelIndexList indexesList = ui->filterListWidget->selectionModel()->selectedIndexes();
+    for (QModelIndex index : indexesList)
+    {
+        FilterMatrix * filter = ui->widget->getMapFilter(index.row());
+
+        EditFilterDialog editFilterDialog;
+        editFilterDialog.setMatrix(filter->getMatrix());
+        editFilterDialog.setCustomName(filter->customName);
+
+        editFilterDialog.setModal(true);
+        editFilterDialog.exec();
+
+        filter->setMatrix(editFilterDialog.getMatrix());
+        filter->customName = editFilterDialog.getCustomName();
+    }
+    updateFiltersView();
+}
+
 void MainWindow::on_removeFilterButton_clicked()
 {
     QModelIndexList indexesList = ui->filterListWidget->selectionModel()->selectedIndexes();

@@ -146,7 +146,7 @@ void GLWidget::setMap(Map * value)
     this->map = filteredMap;
 }
 
-void GLWidget::addMapFilter(Filter * filter)
+void GLWidget::addMapFilter(FilterMatrix * filter)
 {
     this->filters.push_back(filter);
 }
@@ -175,7 +175,7 @@ int GLWidget::getMapFiltersCount()
     return (int) this->filters.size();
 }
 
-Filter * GLWidget::getMapFilter(int filterIndex)
+FilterMatrix * GLWidget::getMapFilter(int filterIndex)
 {
     return this->filters[filterIndex];
 }

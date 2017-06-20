@@ -13,6 +13,7 @@
 #include "map.h"
 #include <iostream>
 #include "filter.h"
+#include "filtermatrix.h"
 
 class GLWidget : public QGLWidget
 {
@@ -40,36 +41,23 @@ public:
     void setMap(Map * value);
 
 
-    void addMapFilter(Filter * filter);
+    void addMapFilter(FilterMatrix * filter);
     void removeMapFilter(int filterIndex);
     void moveMapFilterUp(int filterIndex);
     void moveMapFilterDown(int filterIndex);
     int getMapFiltersCount();
-    Filter * getMapFilter(int filterIndex);
+    FilterMatrix * getMapFilter(int filterIndex);
     QString getMapFilterName(int filterIndex);
 
 private:
     void rotateBy(int x, int y, int z);
-
-    /**
-     * Moves a range of values in a vector.
-     * @param start     The range start position.
-     * @param length    The range length.
-     * @param dst       The range new start position.
-     * @param v         The vector.
-     *
-     * @author Kerrek SB
-     * @see https://stackoverflow.com/questions/7527674/what-is-the-most-effective-way-to-move-items-within-a-vector
-     */
-    void move_range(size_t start, size_t length, size_t dst, std::vector<Filter *> & v);
-
 private:
 
     QVector<QVector3D> m_vertexarray;
     QVector<QVector3D> m_vertices;
 
     Map * map;
-    vector<Filter *> filters;
+    vector<FilterMatrix *> filters;
 
     // GPU Buffer
     QGLBuffer m_vertexbuffer;

@@ -19,7 +19,10 @@ public:
     explicit EditFilterDialog(QWidget *parent = 0);
     ~EditFilterDialog();
 
+    void setMatrix(valarray<int> * matrix);
     valarray<int> * getMatrix();
+
+    void setCustomName(QString customName);
     QString getCustomName();
 
 private:
