@@ -52,7 +52,13 @@ void MainWindow::on_actionNewWorld_triggered()
 void MainWindow::on_pushButtonGoutteLancer_clicked()
 {
     //Ajout d'une goutte
-    ui->widget->getFilteredMap()->addGoutte((float)ui->doubleSpinBoxGoutteX->value(),(float)ui->doubleSpinBoxGoutteY->value());
+    if(ui->doubleSpinBoxGoutteX->value() < ui->widget->getMap()->getSizeX() && ui->doubleSpinBoxGoutteY->value() < ui->widget->getMap()->getSizeY()){
+        ui->widget->getFilteredMap()->addGoutte((float)ui->doubleSpinBoxGoutteX->value(),(float)ui->doubleSpinBoxGoutteY->value());
+    } else {
+        QMessageBox msg;
+        msg.warning(0, "Warning !", "The entered coordinates are not within the map");
+    }
+
 
 }
 

@@ -285,20 +285,22 @@ void GLWidget::updateMapView()
     m_vertexbuffer.allocate(m_vertices.constData(), m_vertices.size() * sizeof(QVector3D));
     m_vertexbuffer.release();
 
+    g_vertexarray.clear();
+    g_vertices.clear();
     g_vertexbuffer.create();
     g_vertexbuffer.bind();
     int verticesCount = 0;
     // ajout des gouttes
     if(!this->filteredMap->getGouttes().empty())
     {
-        g_vertexarray.clear();
+
 
 
         for(unsigned int i=0; i < this->filteredMap->getGouttes().size(); i++)
         {
             Goutte * curGoutte = this->filteredMap->getGouttes()[i];
 
-            g_vertices.clear();
+
             g_vertices.reserve(curGoutte->getPoints().size());
 
             QVector<QVector3D> temp;
