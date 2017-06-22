@@ -52,6 +52,10 @@ private slots:
 
     void on_actionUpdate_triggered();
 
+    void on_actionCenter_triggered();
+
+    void on_pushButtonGoutteDynamic_clicked();
+
 private:
     Ui::MainWindow *ui;
 

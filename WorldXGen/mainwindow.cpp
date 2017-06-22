@@ -45,8 +45,10 @@ void MainWindow::on_actionNewWorld_triggered()
     m->setSizeX(myDialog.getSizeX())
         ->setSizeY(myDialog.getSizeY());
 
+    ui->widget->setCursor(Qt::WaitCursor);
     ui->widget->setMap(m->build());
     ui->widget->updateMapView();
+    ui->widget->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::on_pushButtonGoutteLancer_clicked()
@@ -65,18 +67,22 @@ void MainWindow::on_pushButtonGoutteLancer_clicked()
 void MainWindow::on_pushButtonGoutteSuivant_clicked()
 {
     //appel d'une itération de euler
+    ui->widget->setCursor(Qt::WaitCursor);
     for(int i = 0; i <= 50 ; i++) ui->widget->getFilteredMap()->iterationEuler(0.01f);
     ui->widget->updateMapView();
+    ui->widget->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::on_pushButtonGoutteRes_clicked()
 {
     //appel de euler jusqu'à la fin de la rivière
+    ui->widget->setCursor(Qt::WaitCursor);
     bool done = true;
     while (done) {
         done = ui->widget->getFilteredMap()->iterationEuler(0.01f);
     }
     ui->widget->updateMapView();
+    ui->widget->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::on_addFilterButton_clicked()
@@ -165,8 +171,37 @@ void MainWindow::updateFiltersView()
 
 void MainWindow::on_actionUpdate_triggered()
 {
+    ui->widget->setCursor(Qt::WaitCursor);
     if (ui->widget->isMapSet()){
         ui->widget->filterMap();
         ui->widget->updateMapView();
     }
+
+}
+
+void MainWindow::on_actionCenter_triggered()
+{
+    ui->widget->setX_rot(0);
+    ui->widget->setY_rot(0);
+    ui->widget->setZ_rot(0);
+    ui->widget->setCameraAimX(0);
+    ui->widget->setCameraAimY(0);
+    ui->widget->updateGL();
+}
+
+void MainWindow::on_pushButtonGoutteDynamic_clicked()
+{
+    ui->widget->setCursor(Qt::WaitCursor);
+    bool notDone = true;
+    int i =0;
+    while (notDone) {
+        if(i%50 == 0){
+            ui->widget->updateMapView();
+            ui->widget->updateGL();
+        }
+        notDone = ui->widget->getFilteredMap()->iterationEuler(0.01f);
+        i++;
+    }
+
+    ui->widget->setCursor(Qt::ArrowCursor);
 }

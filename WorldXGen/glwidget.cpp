@@ -35,7 +35,6 @@ void GLWidget::initializeGL()
     z_rot = 0;
     cameraAimX = 0.0;
     cameraAimY = 0.0;
-    cameraAimZ = 0.0;
 
     // GL options
 
@@ -51,8 +50,8 @@ void GLWidget::paintGL()
     // Model view matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(cameraAimX, 0.0, -distance+cameraAimY,//TODO
-              cameraAimX, 0.0, cameraAimY,
+    gluLookAt(0.0, -distance, -distance,//TODO
+              cameraAimX, cameraAimY, 0.0,
               0.0, 1.0, 0.0);
 
     glRotatef(x_rot / 16.0f, 1.0f, 0.0f, 0.0f);
@@ -73,8 +72,9 @@ void GLWidget::paintGL()
     glDrawArrays(GL_TRIANGLES, 0, m_vertexarray.size());
 
 
+    qglColor(Qt::blue);
     //Affichage des gouttes
-//    if(this-> != nullptr){
+//    if(this->isMapSet()){
 //        if(!map->getGouttes().empty()){
 //            qglColor(Qt::blue);
 //            for(int i = 0; i < g_vertexarray.size(); i++){
@@ -83,12 +83,13 @@ void GLWidget::paintGL()
 //            }
 //        }
 //    }
-    qglColor(Qt::blue);
+
     for ( QVector<QVector3D> river : g_vertexarray)
     {
         glVertexPointer(3, GL_FLOAT, 0, river.constData());
         glDrawArrays(GL_LINES, 0, river.size());
     }
+
 
     glDisableClientState(GL_VERTEX_ARRAY);
     //glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -129,6 +130,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
+
     int dx = event->x() - last_pos.x();
     int dy = event->y() - last_pos.y();
 
@@ -139,11 +141,13 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     }
     if (event->buttons() & Qt::LeftButton)
     {
-        this->cameraAimX -= dx/8.0f;
-        this->cameraAimY += dy/8.0f;
+        this->setCursor(Qt::ClosedHandCursor);
+        this->cameraAimX -= dx/32.0f;
+        this->cameraAimY += dy/32.0f;
     }
     last_pos = event->pos();
     updateGL();
+
 }
 
 void GLWidget::wheelEvent(QWheelEvent *event)
@@ -152,11 +156,41 @@ void GLWidget::wheelEvent(QWheelEvent *event)
     updateGL();
 }
 
+void GLWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    this->setCursor(Qt::ArrowCursor);
+}
+
 void GLWidget::rotateBy(int x, int y, int z)
 {
     x_rot += x;
     y_rot += y;
     z_rot += z;
+}
+
+void GLWidget::setX_rot(const qreal &value)
+{
+    x_rot = value;
+}
+
+void GLWidget::setY_rot(const qreal &value)
+{
+    y_rot = value;
+}
+
+void GLWidget::setZ_rot(const qreal &value)
+{
+    z_rot = value;
+}
+
+void GLWidget::setCameraAimX(const GLdouble &value)
+{
+    cameraAimX = value;
+}
+
+void GLWidget::setCameraAimY(const GLdouble &value)
+{
+    cameraAimY = value;
 }
 
 Map * GLWidget::getMap() const
@@ -299,7 +333,7 @@ void GLWidget::updateMapView()
         for(unsigned int i=0; i < this->filteredMap->getGouttes().size(); i++)
         {
             Goutte * curGoutte = this->filteredMap->getGouttes()[i];
-
+            g_vertices.clear();
 
             g_vertices.reserve(curGoutte->getPoints().size());
 
@@ -317,10 +351,10 @@ void GLWidget::updateMapView()
             }
 
             temp.reserve((g_vertices.size()-1)*2);
-            for(int i=0; i < (g_vertices.size()-2); i++)
+            for(int k=0; k < (g_vertices.size()-2); k++)
             {
-                temp.push_back(g_vertices[i]);
-                temp.push_back(g_vertices[i+1]);
+                temp.push_back(g_vertices[k]);
+                temp.push_back(g_vertices[k+1]);
             }
 
             g_vertexarray.push_back(temp);
@@ -333,6 +367,8 @@ void GLWidget::updateMapView()
     }
     g_vertexbuffer.allocate(g_vertices.constData(),verticesCount * sizeof(QVector3D));
     g_vertexbuffer.release();
+
+    this->setCursor(Qt::ArrowCursor);
 
     this->paintGL();
     this->updateGL();

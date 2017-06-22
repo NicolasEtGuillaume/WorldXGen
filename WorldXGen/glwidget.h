@@ -14,6 +14,7 @@
 #include <iostream>
 #include "filter.h"
 #include "filtermatrix.h"
+#include <QCursor>
 
 class GLWidget : public QGLWidget
 {
@@ -32,7 +33,7 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
-
+    void mouseReleaseEvent(QMouseEvent *event);
 
 
     void updateMapView();
@@ -52,6 +53,16 @@ public:
     int getMapFiltersCount();
     FilterMatrix * getMapFilter(int filterIndex);
     QString getMapFilterName(int filterIndex);
+
+    void setCameraAimY(const GLdouble &value);
+
+    void setCameraAimX(const GLdouble &value);
+
+    void setZ_rot(const qreal &value);
+
+    void setY_rot(const qreal &value);
+
+    void setX_rot(const qreal &value);
 
 private:
     void rotateBy(int x, int y, int z);
@@ -85,7 +96,6 @@ private:
     qreal z_rot;
     GLdouble cameraAimX;
     GLdouble cameraAimY;
-    GLdouble cameraAimZ;
 };
 
 #endif // GLWIDGET_H
