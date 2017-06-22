@@ -446,12 +446,45 @@
        <property name="text">
         <string>OK</string>
        </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>customNameLineEdit</tabstop>
+  <tabstop>spinBox</tabstop>
+  <tabstop>spinBox_2</tabstop>
+  <tabstop>spinBox_3</tabstop>
+  <tabstop>spinBox_4</tabstop>
+  <tabstop>spinBox_5</tabstop>
+  <tabstop>spinBox_6</tabstop>
+  <tabstop>spinBox_7</tabstop>
+  <tabstop>spinBox_8</tabstop>
+  <tabstop>spinBox_9</tabstop>
+  <tabstop>spinBox_10</tabstop>
+  <tabstop>spinBox_11</tabstop>
+  <tabstop>spinBox_12</tabstop>
+  <tabstop>spinBox_13</tabstop>
+  <tabstop>spinBox_14</tabstop>
+  <tabstop>spinBox_15</tabstop>
+  <tabstop>spinBox_16</tabstop>
+  <tabstop>spinBox_17</tabstop>
+  <tabstop>spinBox_18</tabstop>
+  <tabstop>spinBox_19</tabstop>
+  <tabstop>spinBox_20</tabstop>
+  <tabstop>spinBox_21</tabstop>
+  <tabstop>spinBox_22</tabstop>
+  <tabstop>spinBox_23</tabstop>
+  <tabstop>spinBox_24</tabstop>
+  <tabstop>spinBox_25</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>okButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

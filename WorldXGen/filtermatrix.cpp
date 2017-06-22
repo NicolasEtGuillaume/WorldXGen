@@ -41,6 +41,8 @@ Map * FilterMatrix::apply(Map * map)
                 int mY = i / 5;
                 int coef = (*(this->matrix))[i];
 
+                if(coef == 0) continue;
+
                 Point3D * point = map->getPoint(
                     clamp(0, x - 2 + mX, mapSizeX - 1),
                     clamp(0, y - 2 + mY, mapSizeY - 1)
@@ -50,7 +52,11 @@ Map * FilterMatrix::apply(Map * map)
                 coefSum += coef;
             }
 
-            newMap->getPoint(x, y)->setZ(newZ / coefSum);
+            if (coefSum != 0)
+            {
+                newZ /= coefSum;
+            }
+            newMap->getPoint(x, y)->setZ(newZ);
         }
     }
 

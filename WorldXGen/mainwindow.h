@@ -13,6 +13,7 @@
 #include "filtermatrix.h"
 #include "filteraveraging.h"
 #include "editfilterdialog.h"
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
