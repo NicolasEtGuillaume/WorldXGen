@@ -18,8 +18,25 @@ class SimplePeaksMoutainMapBuilder : public MapBuilder
 public:
 
     SimplePeaksMoutainMapBuilder();
+
+    /**
+     * @brief Adds a gaussian curve.
+     * @param curve The curve to add.
+     * @return Itself, the same SimplePeaksMoutainMapBuilder instance (Factory pattern).
+     */
     SimplePeaksMoutainMapBuilder * addGaussianCurve(Gaussian3DCurve * curve);
+
+    /**
+     * @brief Builds a map.
+     * @return The built map.
+     */
     Map * build();
+
+    /**
+     * @brief Builds a map.
+     * @param randomCurves The generation will use random gaussian curves if True.
+     * @return The built map.
+     */
     Map * build(bool randomCurves);
 
 private:

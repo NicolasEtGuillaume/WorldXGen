@@ -70,9 +70,17 @@ public:
      */
     unsigned int getSizeY();
 
+    /**
+     * @brief Gets the water drops associated with the map.
+     * @return The water drop instances.
+     */
     vector<Goutte *> getGouttes() const;
 
-    Map * Map::clone();
+    /**
+     * @brief Clones the current map, copies every point.
+     * @return A new map, the same as the used one.
+     */
+    Map * clone();
 };
 
 #endif // MAP_H

@@ -8,6 +8,10 @@
 class FullyRandomMapBuilder : public MapBuilder
 {
 public:
+    /**
+     * @brief Builds a map.
+     * @return A map instance.
+     */
     Map * build();
 };
 

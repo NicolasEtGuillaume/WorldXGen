@@ -17,6 +17,11 @@ class PeaksMountainChainMapBuilder : public MapBuilder
 {
 public:
     PeaksMountainChainMapBuilder();
+
+    /**
+     * @brief Builds a map.
+     * @return The built map.
+     */
     Map * build();
 };
 
