@@ -52,14 +52,14 @@ void MainWindow::on_actionNewWorld_triggered()
 void MainWindow::on_pushButtonGoutteLancer_clicked()
 {
     //Ajout d'une goutte
-    ui->widget->getMap()->addGoutte((float)ui->doubleSpinBoxGoutteX->value(),(float)ui->doubleSpinBoxGoutteY->value());
+    ui->widget->getFilteredMap()->addGoutte((float)ui->doubleSpinBoxGoutteX->value(),(float)ui->doubleSpinBoxGoutteY->value());
 
 }
 
 void MainWindow::on_pushButtonGoutteSuivant_clicked()
 {
     //appel d'une itération de euler
-    for(int i = 0; i <= 50 ; i++) ui->widget->getMap()->iterationEuler(0.01f);
+    for(int i = 0; i <= 50 ; i++) ui->widget->getFilteredMap()->iterationEuler(0.01f);
     ui->widget->updateMapView();
 }
 
@@ -68,7 +68,7 @@ void MainWindow::on_pushButtonGoutteRes_clicked()
     //appel de euler jusqu'à la fin de la rivière
     bool done = true;
     while (done) {
-        done = ui->widget->getMap()->iterationEuler(0.01f);
+        done = ui->widget->getFilteredMap()->iterationEuler(0.01f);
     }
     ui->widget->updateMapView();
 }
@@ -154,5 +154,13 @@ void MainWindow::updateFiltersView()
     {
         QString name = QString::number(i) + ". " + ui->widget->getMapFilterName(i);
         ui->filterListWidget->addItem(name);
+    }
+}
+
+void MainWindow::on_actionUpdate_triggered()
+{
+    if (ui->widget->isMapSet()){
+        ui->widget->filterMap();
+        ui->widget->updateMapView();
     }
 }

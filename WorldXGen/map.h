@@ -71,6 +71,8 @@ public:
     unsigned int getSizeY();
 
     vector<Goutte *> getGouttes() const;
+
+    Map * Map::clone();
 };
 
 #endif // MAP_H

@@ -49,6 +49,8 @@ private slots:
 
     void on_moveDownButton_clicked();
 
+    void on_actionUpdate_triggered();
+
 private:
     Ui::MainWindow *ui;
 

@@ -7,6 +7,7 @@ GLWidget::GLWidget(QWidget *parent) :
     g_vertexbuffer(QGLBuffer::VertexBuffer)
 {
     map = nullptr;
+    filteredMap = nullptr;
 }
 
 GLWidget::~GLWidget()
@@ -73,14 +74,20 @@ void GLWidget::paintGL()
 
 
     //Affichage des gouttes
-    if(map != nullptr){
-        if(!map->getGouttes().empty()){
-            qglColor(Qt::cyan);
-            for(int i = 0; i < g_vertexarray.size(); i++){
-                glVertexPointer(3, GL_FLOAT, 0, g_vertexarray[i].constData());
-                glDrawArrays(GL_LINES, 0, g_vertexarray[i].size());
-            }
-        }
+//    if(this-> != nullptr){
+//        if(!map->getGouttes().empty()){
+//            qglColor(Qt::blue);
+//            for(int i = 0; i < g_vertexarray.size(); i++){
+//                glVertexPointer(3, GL_FLOAT, 0, g_vertexarray[i].constData());
+//                glDrawArrays(GL_LINES, 0, g_vertexarray[i].size());
+//            }
+//        }
+//    }
+    qglColor(Qt::blue);
+    for ( QVector<QVector3D> river : g_vertexarray)
+    {
+        glVertexPointer(3, GL_FLOAT, 0, river.constData());
+        glDrawArrays(GL_LINES, 0, river.size());
     }
 
     glDisableClientState(GL_VERTEX_ARRAY);
@@ -159,11 +166,26 @@ Map * GLWidget::getMap() const
 
 void GLWidget::setMap(Map * value)
 {
-    Map * filteredMap = value;
+    this->map = value;
+    filterMap();
+}
+
+bool GLWidget::isMapSet()
+{
+    return (this->map != nullptr);
+}
+
+Map * GLWidget::getFilteredMap() const
+{
+    return this->filteredMap;
+}
+
+void GLWidget::filterMap()
+{
+    this->filteredMap = this->map->clone();
     for (Filter * filter : this->filters) {
-        filteredMap = filter->apply(filteredMap);
+        this->filteredMap = filter->apply(this->filteredMap);
     }
-    this->map = filteredMap;
 }
 
 void GLWidget::addMapFilter(FilterMatrix * filter)
@@ -206,11 +228,10 @@ void GLWidget::updateMapView()
 {
     //modification des paramètre opengl pour afficher une map
 
-
     m_vertices.clear();
     m_vertexarray.clear();
-    vertices_by_x = map->getSizeX();
-    vertices_by_z = map->getSizeY();
+    vertices_by_x = this->filteredMap->getSizeX();
+    vertices_by_z = this->filteredMap->getSizeY();
     quads_by_x = vertices_by_x - 1;
     quads_by_z = vertices_by_z - 1;
     Point3D p = Point3D(0,0,0);
@@ -220,7 +241,7 @@ void GLWidget::updateMapView()
     {
         for(int x = 0; x < vertices_by_x; ++x)
         {
-                p = *map->getPoint(x,z);
+                p = *(this->filteredMap->getPoint(x,z));
 //                float norm = p.getX()*p.getX() + p.getY()*p.getY() +p.getZ()*p.getZ();
 //                norm = sqrt(norm);
 //                vertice.setX(MAP_SIZE * p.getX() / norm);
@@ -268,14 +289,14 @@ void GLWidget::updateMapView()
     g_vertexbuffer.bind();
     int verticesCount = 0;
     // ajout des gouttes
-    if(!map->getGouttes().empty())
+    if(!this->filteredMap->getGouttes().empty())
     {
         g_vertexarray.clear();
 
 
-        for(unsigned int i=0; i < map->getGouttes().size(); i++)
+        for(unsigned int i=0; i < this->filteredMap->getGouttes().size(); i++)
         {
-            Goutte * curGoutte = map->getGouttes()[i];
+            Goutte * curGoutte = this->filteredMap->getGouttes()[i];
 
             g_vertices.clear();
             g_vertices.reserve(curGoutte->getPoints().size());
@@ -311,7 +332,6 @@ void GLWidget::updateMapView()
     g_vertexbuffer.allocate(g_vertices.constData(),verticesCount * sizeof(QVector3D));
     g_vertexbuffer.release();
 
-
-
     this->paintGL();
+    this->updateGL();
 }

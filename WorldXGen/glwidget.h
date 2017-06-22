@@ -39,6 +39,10 @@ public:
 
     Map * getMap() const;
     void setMap(Map * value);
+    bool isMapSet();
+
+    Map * getFilteredMap() const;
+    void filterMap();
 
 
     void addMapFilter(FilterMatrix * filter);
@@ -60,6 +64,7 @@ private:
     QVector<QVector3D> g_vertices;
 
     Map * map;
+    Map * filteredMap;
     vector<FilterMatrix *> filters;
 
     // GPU Buffer

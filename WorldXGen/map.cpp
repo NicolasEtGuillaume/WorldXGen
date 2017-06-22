@@ -179,3 +179,15 @@ unsigned int Map::getSizeY()
 {
     return this->sizeY;
 }
+
+Map * Map::clone()
+{
+    Map * newMap = new Map(this->sizeX, this->sizeY);
+    for (Point3D * point : this->points)
+    {
+        unsigned int x = (unsigned int) point->getX();
+        unsigned int y = (unsigned int) point->getY();
+        newMap->getPoint(x, y)->setZ(point->getZ());
+    }
+    return newMap;
+}
