@@ -5,4 +5,4 @@ A 3d map generator using probility distribution to create relief such as mountai
 * Render the view in 3d with an OpenGL layout.
 * Each map generation is associated to a seed in order to easily regenerate the same map in the future
 
-![WorldXGen map view](http://imgur.com/monimage.jpg "WorldXGen view")
+![WorldXGen map view](https://raw.githubusercontent.com/NicolasEtGuillaume/WorldXGen/develop/window_ui.png "WorldXGen view")
